@@ -1,4 +1,5 @@
 @section('title', 'Home')
+
 <x-layout>
-    Hello
+    <x-header-transparent />
 </x-layout>
