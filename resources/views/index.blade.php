@@ -1,5 +1,5 @@
 @section('title', 'Home')
 
+<x-header-transparent />
 <x-layout>
-    <x-header-transparent />
 </x-layout>
