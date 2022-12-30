@@ -1,4 +1,5 @@
 <nav class="absolute top-0 w-full z-10">
+    <x-search-form />
     <header class="py-3 px-12 border-b border-gray-300 flex justify-between items-center">
         <x-text-base class="text-gray-500">
             <a href="tel:0310 4864150">0310 4864150</a>
