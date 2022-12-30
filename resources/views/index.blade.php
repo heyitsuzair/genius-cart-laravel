@@ -1,6 +1,9 @@
 @section('title', 'Home')
 
-<x-header-transparent />
+@section('nav')
+    <x-header-transparent />
+@endsection
+
 <x-layout>
     <x-hero />
 </x-layout>

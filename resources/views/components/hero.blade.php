@@ -1,6 +1,6 @@
 <div class="owl-carousel">
     <div>
-        <div class="bg-no-repeat h-full w-full bg-center bg-cover flex items-center"
+        <div class="bg-no-repeat h-screen w-full bg-center bg-cover flex items-center"
             style="background-image: url('src/images/slide1.png')">
             <div class="container mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
                 <x-text-2xl-gray class="font-semibold">
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div>
-        <div class="bg-no-repeat h-full w-full bg-center bg-cover  flex items-center"
+        <div class="bg-no-repeat h-screen w-full bg-center bg-cover  flex items-center"
             style="background-image: url('src/images/slide2.png')">
             <div class="container mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
                 <x-text-2xl-gray class="font-semibold">
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div>
-        <div class="bg-no-repeat h-full w-full bg-center bg-cover  flex items-center"
+        <div class="bg-no-repeat h-screen w-full bg-center bg-cover  flex items-center"
             style="background-image: url('src/images/slide3.png')">
             <div class="container mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
                 <x-text-2xl-gray class="font-semibold">

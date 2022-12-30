@@ -4,7 +4,7 @@
             <input type="text" name="query" placeholder="Search Product For" class="border-0 focus:ring-0 ml-4 w-5/6"
                 id="query">
             <div class="category">
-                <select id="countries" name="category" class="border-0 focus:ring-0">
+                <select id="countries" name="category" class="border-0 w-40 p-4 focus:ring-0">
                     <option selected>All Categories</option>
                     <option value="US">United States</option>
                     <option value="CA">Canada</option>
@@ -15,8 +15,7 @@
 
             <button type="submit" id="search-btn"
                 class="text-white bg-gray-600 hover:bg-gray-800 rounded-r-full p-5"><i
-                    class="fa fa-search text-white text-xl" aria-hidden="true"></i></button>
-
+                    class="fa fa-search text-white text-xl  mr-1" aria-hidden="true"></i></button>
         </div>
     </form>
 </section>

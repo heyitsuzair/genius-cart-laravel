@@ -18,7 +18,7 @@
 
 <body>
     <x-spinner-large />
-
+    @yield('nav')
     <main id="content">
         {{ $slot }}
     </main>
