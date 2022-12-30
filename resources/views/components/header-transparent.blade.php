@@ -1,6 +1,6 @@
-<nav class="absolute top-0 w-full z-10">
+<nav class="absolute top-0 hidden lg:block w-full z-10">
     <x-search-form />
-    <header class="py-3 px-12 border-b border-gray-300 flex justify-between items-center">
+    <header class="py-3 px-4 sm:px-12 border-b border-gray-300 flex justify-between items-center">
         <x-text-base class="text-gray-500">
             <a href="tel:0310 4864150">0310 4864150</a>
         </x-text-base>
@@ -15,16 +15,18 @@
             </div>
         </div>
     </header>
-    <header class="py-3 px-9 flex justify-between">
+    <header class="py-3 px-9 flex flex-col sm:flex-row items-center gap-7 justify-between">
         <div class="flex items-center">
-            <a href="/">
-                <img src="{{ asset('src/images/logo.png') }}" class="w-32" alt="Loading...">
-            </a>
+            <div class="brand">
+                <a href="/">
+                    <img src="{{ asset('src/images/logo.png') }}" class="w-full" alt="Loading...">
+                </a>
+            </div>
             @php
                 include app_path('includes/navigation/index.php');
                 $currentRoute = Route::current()->getName();
             @endphp
-            <div class="menu mx-20">
+            <div class="menu mx-20 hidden lg:block">
                 <ul class="font-medium bg-inherit flex gap-7">
                     @foreach ($navMenu as $nav)
                         <li class="{{ $currentRoute == $nav['title'] ? 'border-b-2 border-gray-700' : '' }}">
@@ -48,6 +50,13 @@
             <x-icon-circle class="w-14 h-14 cursor-pointer relative" :badge="true" :badgeValue="10" id="cart">
                 fa-solid fa-basket-shopping text-md
             </x-icon-circle>
+            <button type="button" data-drawer-target="drawer-backdrop" data-drawer-show="drawer-backdrop"
+                data-drawer-placement="right" aria-controls="drawer-backdrop">
+                <x-icon-circle class="lg:hidden w-14 h-14 cursor-pointer relative" :badge="false" id="cart">
+                    fa-solid fa-bars text-md
+                </x-icon-circle>
+            </button>
         </div>
+        <x-drawer />
     </header>
 </nav>

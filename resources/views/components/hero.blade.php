@@ -2,7 +2,7 @@
     <div>
         <div class="bg-no-repeat h-screen w-full bg-center bg-cover flex items-center"
             style="background-image: url('src/images/slide1.png')">
-            <div class="container mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
+            <div class="container mx-20 lg:mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
                 <x-text-2xl-gray class="font-semibold">
                     Best Accessories
                 </x-text-2xl-gray>
@@ -23,7 +23,7 @@
     <div>
         <div class="bg-no-repeat h-screen w-full bg-center bg-cover  flex items-center"
             style="background-image: url('src/images/slide2.png')">
-            <div class="container mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
+            <div class="container mx-20 lg:mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
                 <x-text-2xl-gray class="font-semibold">
                     Fresh Food
                 </x-text-2xl-gray>
@@ -44,7 +44,7 @@
     <div>
         <div class="bg-no-repeat h-screen w-full bg-center bg-cover  flex items-center"
             style="background-image: url('src/images/slide3.png')">
-            <div class="container mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
+            <div class="container mx-20 lg:mx-40 mt-24 flex flex-col gap-6 items-start justify-center">
                 <x-text-2xl-gray class="font-semibold">
                     Best Furniture
                 </x-text-2xl-gray>

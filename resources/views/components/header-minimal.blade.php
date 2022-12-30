@@ -1,6 +1,6 @@
 <nav class="bg-white w-full z-10">
     <x-search-form />
-    <header class="py-3 px-12 border-b border-gray-300 flex justify-between items-center">
+    <header class="py-3 px-4 sm:px-12 border-b border-gray-300 flex justify-between items-center">
         <x-text-base class="text-gray-500">
             <a href="tel:0310 4864150">0310 4864150</a>
         </x-text-base>
@@ -50,6 +50,13 @@
             <x-icon-circle class="w-14 h-14 cursor-pointer relative" :badge="true" :badgeValue="10" id="cart">
                 fa-solid fa-basket-shopping text-md
             </x-icon-circle>
+            <button type="button" data-drawer-target="drawer-backdrop" data-drawer-show="drawer-backdrop"
+                data-drawer-placement="right" aria-controls="drawer-backdrop">
+                <x-icon-circle class="lg:hidden w-14 h-14 cursor-pointer relative" :badge="false" id="cart">
+                    fa-solid fa-bars text-md
+                </x-icon-circle>
+            </button>
         </div>
+        <x-drawer />
     </header>
 </nav>
