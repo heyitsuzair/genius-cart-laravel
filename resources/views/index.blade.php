@@ -2,4 +2,5 @@
 
 <x-header-transparent />
 <x-layout>
+    <x-hero />
 </x-layout>

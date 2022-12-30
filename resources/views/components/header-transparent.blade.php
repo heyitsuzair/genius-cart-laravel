@@ -1,4 +1,4 @@
-<nav>
+<nav class="absolute top-0 w-full z-10">
     <header class="py-3 px-12 border-b border-gray-300 flex justify-between items-center">
         <x-text-base>
             <a href="tel:0310 4864150">0310 4864150</a>
@@ -22,7 +22,7 @@
                 $currentRoute = Route::current()->getName();
             @endphp
             <div class="menu mx-20">
-                <ul class="font-medium bg-white flex gap-7">
+                <ul class="font-medium bg-inherit flex gap-7">
                     @foreach ($navMenu as $nav)
                         <li class="{{ $currentRoute == $nav['title'] ? 'border-b-2 border-gray-700' : '' }}">
                             <a href="{{ $nav['link'] }}"
