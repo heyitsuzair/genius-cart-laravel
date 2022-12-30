@@ -2,8 +2,9 @@ $(document).ready(function () {
     $(".owl-carousel").owlCarousel({
         items: 1,
         autoplay: true,
-        autoplayTimeout: 3000,
+        autoplayTimeout: 5000,
         autoplayHoverPause: false,
+        loop: true,
         animateOut: "animate__fadeOutUp",
         animateIn: "animate__fadeInDown",
         nav: true,

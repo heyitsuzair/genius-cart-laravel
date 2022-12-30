@@ -1,6 +1,6 @@
 <nav class="absolute top-0 w-full z-10">
     <header class="py-3 px-12 border-b border-gray-300 flex justify-between items-center">
-        <x-text-base>
+        <x-text-base class="text-gray-500">
             <a href="tel:0310 4864150">0310 4864150</a>
         </x-text-base>
         <div class="right flex items-center gap-2">
@@ -8,9 +8,9 @@
                 <x-currency-switch />
             </div>
             <div>
-                <x-button-sm-rounded class="py-1 px-6 text-white bg-black" href="/">
+                <x-button-full-rounded class="py-1 px-6 text-white bg-black" href="/">
                     Login
-                </x-button-sm-rounded>
+                </x-button-full-rounded>
             </div>
         </div>
     </header>
