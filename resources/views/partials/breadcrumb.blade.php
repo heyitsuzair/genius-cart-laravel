@@ -3,7 +3,7 @@
     <div>
         <strong class="text-3xl">{{ $value }}</strong>
         <div class="my-4">
-            <span>Home <span class="text-gray-500 text-base">/</span> {{ $value }}</span>
+            <span><a href="/">Home</a> <span class="text-gray-500 text-base">/</span> {{ $value }}</span>
         </div>
     </div>
 </section>

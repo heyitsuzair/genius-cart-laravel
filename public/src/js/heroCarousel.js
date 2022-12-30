@@ -6,6 +6,7 @@ $(document).ready(function () {
         autoplayTimeout: 5000,
         autoplayHoverPause: false,
         loop: true,
+        dots: false,
         animateOut: "animate__fadeOutUp",
         animateIn: "animate__fadeInDown",
         nav: true,

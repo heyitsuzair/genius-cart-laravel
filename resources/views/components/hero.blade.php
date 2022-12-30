@@ -12,9 +12,11 @@
                 <x-text-base class="text-gray-800">
                     Gadget for everyday to make your life more interesting and easier even smarter.
                 </x-text-base>
-                <x-button-md-rounded class="bg-gray-700 p-4 text-white" href="/shop">
-                    Shop Now
-                </x-button-md-rounded>
+                <a href="/shop">
+                    <x-button-md-rounded class="bg-gray-700 p-4 text-white">
+                        Shop Now
+                    </x-button-md-rounded>
+                </a>
             </div>
         </div>
     </div>
@@ -31,9 +33,11 @@
                 <x-text-base class="text-gray-800">
                     Buy the best Organic Food for your Healthy Future and Family.
                 </x-text-base>
-                <x-button-md-rounded class="bg-gray-700 p-4 text-white" href="/shop">
-                    Shop Now
-                </x-button-md-rounded>
+                <a href="/shop">
+                    <x-button-md-rounded class="bg-gray-700 p-4 text-white">
+                        Shop Now
+                    </x-button-md-rounded>
+                </a>
             </div>
         </div>
     </div>
@@ -50,9 +54,11 @@
                 <x-text-base class="text-gray-800">
                     Furniture must have personality, as well as be beautiful and make your home Gorgeous.
                 </x-text-base>
-                <x-button-md-rounded class="bg-gray-700 p-4 text-white" href="/shop">
-                    Shop Now
-                </x-button-md-rounded>
+                <a href="/shop">
+                    <x-button-md-rounded class="bg-gray-700 p-4 text-white">
+                        Shop Now
+                    </x-button-md-rounded>
+                </a>
             </div>
         </div>
     </div>

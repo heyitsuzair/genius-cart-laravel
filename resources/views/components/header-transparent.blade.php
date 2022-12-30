@@ -17,7 +17,9 @@
     </header>
     <header class="py-3 px-9 flex justify-between">
         <div class="flex items-center">
-            <img src="{{ asset('src/images/logo.png') }}" class="w-32" alt="Loading...">
+            <a href="/">
+                <img src="{{ asset('src/images/logo.png') }}" class="w-32" alt="Loading...">
+            </a>
             @php
                 include app_path('includes/navigation/index.php');
                 $currentRoute = Route::current()->getName();
