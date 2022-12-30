@@ -5,5 +5,6 @@
 @endsection
 
 <x-layout>
-    Hello
+    @include('partials.breadcrumb', ['value' => Route::current()->getName()])
+
 </x-layout>
