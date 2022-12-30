@@ -7,12 +7,12 @@
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
     <div class="my-20 container flex flex-col md:flex-row gap-10 mx-auto">
-        <article class="px-10 md:px-0 md:w-1/2">
+        <article class="px-3 w-full md:w-1/2">
             <x-heading-3xl :divider="true">
                 Send Message
             </x-heading-3xl>
             <form action="/contact" method="post">
-                <div class="grid grid-cols-12 my-12 gap-8">
+                <div class="grid grid-cols-12 justify-center my-12 gap-8">
                     <div class="col-span-12 md:col-span-6">
                         <x-input type="text" class="p-4" name="full_name" label="Full Name"
                             value="{{ old('full_name') }}" placeholder="Name *" />
@@ -39,7 +39,7 @@
                 </div>
             </form>
         </article>
-        <aside class="px-10 md:px-0 md:w-1/2">
+        <aside class="px-3 w-full md:w-1/2">
             <div class="sticky top-0">
 
                 <x-heading-3xl :divider="true">

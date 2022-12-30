@@ -15,16 +15,18 @@
             </div>
         </div>
     </header>
-    <header class="py-3 px-9 flex justify-between">
+    <header class="py-3 px-9 flex flex-col sm:flex-row items-center gap-7 justify-between">
         <div class="flex items-center">
-            <a href="/">
-                <img src="{{ asset('src/images/logo.png') }}" class="w-32" alt="Loading...">
-            </a>
+            <div class="brand">
+                <a href="/">
+                    <img src="{{ asset('src/images/logo.png') }}" class="w-full" alt="Loading...">
+                </a>
+            </div>
             @php
                 include app_path('includes/navigation/index.php');
                 $currentRoute = Route::current()->getName();
             @endphp
-            <div class="menu mx-20">
+            <div class="menu mx-20 hidden lg:block">
                 <ul class="font-medium bg-inherit flex gap-7">
                     @foreach ($navMenu as $nav)
                         <li class="{{ $currentRoute == $nav['title'] ? 'border-b-2 border-gray-700' : '' }}">
