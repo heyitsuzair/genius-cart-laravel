@@ -26,7 +26,14 @@
                     </div>
                 </div>
         </aside>
-        <div class="col-span-9">hello</div>
+        <div class="col-span-9">
+            <div class="rounded-lg p-4 bg-gray-100">
+                <span class="font-semibold">Shop</span>
+            </div>
+            <div class="my-10">
+
+            </div>
+        </div>
     </div>
 </x-layout>
 <script>
