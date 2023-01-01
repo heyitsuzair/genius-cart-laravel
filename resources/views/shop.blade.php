@@ -14,9 +14,6 @@
     <div class="grid grid-cols-12 gap-7 h-screen mx-auto px-12 my-12">
         <aside class="col-span-3">
             <div class="sticky top-24">
-                @php
-                    $categories = ['Electronics', 'Electronics', 'Gaming', 'Parts'];
-                @endphp
                 <x-categories-sidebar :categories="$categories" />
 
                 <div class="filter my-5">

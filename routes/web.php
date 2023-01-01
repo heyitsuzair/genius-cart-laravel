@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,7 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('Contact');
 
-Route::get('/shop', function () {
-    return view('shop');
-})->name('Shop');
+Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
 /**
  * Views ------------------->
  */
