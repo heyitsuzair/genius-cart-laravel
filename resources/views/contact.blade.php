@@ -4,6 +4,10 @@
     <x-header-minimal />
 @endsection
 
+@section('footer')
+    <x-footer />
+@endsection
+
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
     <div class="my-20 container flex flex-col md:flex-row gap-10 mx-auto">
@@ -12,6 +16,7 @@
                 Send Message
             </x-heading-3xl>
             <form action="/contact" method="post">
+                @csrf
                 <div class="grid grid-cols-12 justify-center my-12 gap-8">
                     <div class="col-span-12 md:col-span-6">
                         <x-input type="text" class="p-4" name="full_name" label="Full Name"

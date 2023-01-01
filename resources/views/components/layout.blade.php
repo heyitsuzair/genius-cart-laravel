@@ -19,10 +19,12 @@
 
 <body>
     <x-spinner-large />
+    <x-toast />
     @yield('nav')
     <main id="content">
         {{ $slot }}
     </main>
+    @yield('footer')
     <script src="{{ asset('src/js/index.js') }}" type="module"></script>
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
 </body>
