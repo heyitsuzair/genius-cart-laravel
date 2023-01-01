@@ -4,6 +4,7 @@ import "./preloader.js";
 import "./heroCarousel.js";
 import "./search.js";
 import "./toast.js";
+import "./icon.js";
 
 if (window.location.pathname === "/") {
     $("body").css("overflow", "hidden");

@@ -15,6 +15,8 @@
             </div>
         </div>
     </header>
+</nav>
+<nav class="sticky top-0 bg-white shadow-xl">
     <header class="py-3 px-9 flex flex-col sm:flex-row items-center gap-7 justify-between">
         <div class="flex items-center">
             <div class="brand">
@@ -29,10 +31,10 @@
             <div class="menu mx-20 hidden lg:block">
                 <ul class="font-medium bg-inherit flex gap-7">
                     @foreach ($navMenu as $nav)
-                        <li class="{{ $currentRoute == $nav['title'] ? 'border-b-2 border-gray-700' : '' }}">
-                            <a href="{{ $nav['link'] }}"
-                                class="block py-2 text-gray-700 text-sm
-                            p-0 text-gray"
+                        <li
+                            class="{{ $currentRoute == $nav['title'] ? 'border-b-2 text-blue-500 border-blue-500' : 'text-gray-700' }} hover:text-blue-500 hover:border-b-2 hover:border-blue-500 transition">
+                            <a href="{{ $nav['link'] }}" class="block py-2  text-sm
+                            p-0"
                                 aria-current="page">{{ $nav['title'] }}</a>
                         </li>
                     @endforeach
@@ -44,14 +46,16 @@
             <x-icon-circle class="w-14 h-14 cursor-pointer relative" :badge="false" id="search">
                 fa fa-search text-md
             </x-icon-circle>
-            <x-icon-circle class="w-14 h-14 cursor-pointer relative" :badge="true" :badgeValue="2" id="wishlist">
+            <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="2"
+                id="wishlist">
                 fa-regular fa-heart text-md
             </x-icon-circle>
-            <x-icon-circle class="w-14 h-14 cursor-pointer relative" :badge="true" :badgeValue="10" id="cart">
+            <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="10"
+                id="cart">
                 fa-solid fa-basket-shopping text-md
             </x-icon-circle>
-            <button type="button" data-drawer-target="drawer-backdrop" data-drawer-show="drawer-backdrop"
-                data-drawer-placement="right" aria-controls="drawer-backdrop">
+            <button type="button" data-drawer-target="drawer-right" data-drawer-backdrop="false"
+                data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right">
                 <x-icon-circle class="lg:hidden w-14 h-14 cursor-pointer relative" :badge="false" id="cart">
                     fa-solid fa-bars text-md
                 </x-icon-circle>

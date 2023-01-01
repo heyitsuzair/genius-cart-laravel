@@ -45,8 +45,7 @@
             </form>
         </article>
         <aside class="px-3 w-full md:w-1/2">
-            <div class="sticky top-0">
-
+            <div class="sticky top-24">
                 <x-heading-3xl :divider="true">
                     Get In Touch
                 </x-heading-3xl>
