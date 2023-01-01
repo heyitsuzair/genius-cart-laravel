@@ -14,10 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/**
+ * Views ------------------->
+ */
 Route::get('/', function () {
     return view('index');
 })->name('Home');
+
 Route::get('/contact', function () {
     return view('contact');
 })->name('Contact');
+
+Route::get('/shop', function () {
+    return view('shop');
+})->name('Shop');
+/**
+ * Views ------------------->
+ */
 Route::post('/contact', [ContactController::class, 'create']);

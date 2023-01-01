@@ -16,7 +16,7 @@
         </div>
     </header>
 </nav>
-<nav class="sticky top-0 bg-white shadow-xl">
+<nav class="sticky top-0 bg-white shadow-xl z-[1]">
     <header class="py-3 px-9 flex flex-col sm:flex-row items-center gap-7 justify-between">
         <div class="flex items-center">
             <div class="brand">

@@ -1,4 +1,4 @@
-<section class="py-7 absolute top-0 bg-gray-100 w-full z-[11] hidden" id="search-form">
+<section class="py-7 fixed top-0 bg-gray-100 w-full z-[11] hidden" id="search-form">
     <form action="/search" method="get">
         <div class="container mx-auto rounded-full bg-white flex items-center justify-between">
             <input type="text" name="query" placeholder="Search Product For" class="border-0 focus:ring-0 ml-4 w-5/6"
