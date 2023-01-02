@@ -17,7 +17,7 @@
                 <x-categories-sidebar :categories="$categories" />
 
                 <div class="filter my-5">
-                    <h1 class="font-bold mx-4 border-b">Filter By Price</h1>
+                    <h1 class="font-bold mx-4 border-b">Filter By Price (PKR)</h1>
                     <div class="my-8">
                         <x-filter-by-price />
                     </div>
@@ -28,6 +28,7 @@
                 <span class="font-semibold">Shop</span>
             </div>
             <div class="my-5">
+
                 <div class="grid grid-cols-12 gap-6">
                     @unless(count($products) < 1)
                         @foreach ($products as $product)

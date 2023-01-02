@@ -13,7 +13,7 @@
             </h2>
             <div class="flex justify-between">
                 <span class="font-semibold text-sm">
-                    ${{ $product->price }}
+                    {{ session('currency') ?? 'PKR' }} {{ $product->price }}
                 </span>
                 <span class="text-sm text-gray-600">
                     {{ $product->total_reviews }} ({{ $product->average_rating }})

@@ -5,16 +5,20 @@
     </svg></button>
 
 <!-- Dropdown menu -->
-<div id="dropdownInformation" class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow">
+<div id="dropdownInformation" class="hidden z-[21] w-44 bg-white rounded divide-y divide-gray-100 shadow">
 
     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownInformationButton">
         <li>
-            <a href="USD"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">USD</a>
+            <form action="/switch-currency" method="GET">
+                <input type="hidden" name="currency" value="USD">
+                <button class="w-full text-left py-2 px-4 hover:bg-gray-100" type="submit">USD</button>
+            </form>
         </li>
         <li>
-            <a href="PKR"
-                class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">PKR</a>
+            <form action="/switch-currency" method="GET">
+                <input type="hidden" name="currency" value="PKR">
+                <button class="w-full text-left py-2 px-4 hover:bg-gray-100" type="submit">PKR</button>
+            </form>
         </li>
     </ul>
 </div>

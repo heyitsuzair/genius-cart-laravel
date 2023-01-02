@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,13 @@ Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
 /**
  * Views ------------------->
  */
+
+/**
+ * Currency ----------->
+ */
+Route::get('/switch-currency', [ProductsController::class, 'switchCurrency']);
+/**
+ * Currency ----------->
+ */
+
 Route::post('/contact', [ContactController::class, 'create']);
