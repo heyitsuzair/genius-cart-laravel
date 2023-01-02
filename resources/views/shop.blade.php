@@ -11,9 +11,9 @@
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
 
-    <div class="grid grid-cols-12 gap-7 h-screen mx-auto px-12 my-12">
-        <aside class="col-span-3">
-            <div class="sticky top-24">
+    <div class="grid grid-cols-12 gap-7 mx-auto px-12 my-12 justify-center">
+        <aside class="col-span-12 lg:col-span-3">
+            <div class="lg:sticky lg:top-24">
                 <x-categories-sidebar :categories="$categories" />
 
                 <div class="filter my-5">
@@ -23,14 +23,20 @@
                     </div>
                 </div>
         </aside>
-        <div class="col-span-9">
+        <section class="col-span-12 lg:col-span-9">
             <div class="rounded-lg p-4 bg-gray-100">
                 <span class="font-semibold">Shop</span>
             </div>
-            <div class="my-10">
-
+            <div class="my-5">
+                <div class="grid grid-cols-12 gap-6">
+                    @foreach ($products as $product)
+                        <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+                            <x-product-card :product="$product" />
+                        </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        </section>
     </div>
 </x-layout>
 <script>

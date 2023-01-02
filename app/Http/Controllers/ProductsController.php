@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -14,9 +15,13 @@ class ProductsController extends Controller
          */
         $categories = Category::all();
 
-
+        /**
+         * Getting All Products
+         */
+        $products = Product::all();
         return view('shop', [
-            'categories' => $categories
+            'categories' => $categories,
+            'products' => $products
         ]);
     }
 }
