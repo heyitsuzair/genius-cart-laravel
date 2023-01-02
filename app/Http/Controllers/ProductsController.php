@@ -18,7 +18,7 @@ class ProductsController extends Controller
         /**
          * Getting All Products
          */
-        $products = Product::all();
+        $products = Product::paginate(6);
         return view('shop', [
             'categories' => $categories,
             'products' => $products

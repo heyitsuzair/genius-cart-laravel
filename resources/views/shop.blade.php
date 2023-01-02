@@ -36,6 +36,9 @@
                     @endforeach
                 </div>
             </div>
+            <div class="my-5">
+                {{ $products->links() }}
+            </div>
         </section>
     </div>
 </x-layout>
