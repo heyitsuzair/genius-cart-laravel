@@ -1,15 +1,18 @@
-<section class="py-7 fixed top-0 bg-gray-100 w-full z-[11] hidden" id="search-form">
-    <form action="/search" method="get">
+<section class="py-7 fixed top-0 bg-gray-100 w-full z-[21] hidden" id="search-form">
+    <form action="/shop" method="get">
         <div class="container mx-auto rounded-full bg-white flex items-center justify-between">
             <input type="text" name="query" placeholder="Search Product For" class="border-0 focus:ring-0 ml-4 w-5/6"
                 id="query">
             <div class="category">
-                <select id="countries" name="category" class="border-0 w-40 p-4 focus:ring-0">
-                    <option selected>All Categories</option>
-                    <option value="US">United States</option>
-                    <option value="CA">Canada</option>
-                    <option value="FR">France</option>
-                    <option value="DE">Germany</option>
+                @php
+                    use App\Models\Category;
+                    $categories = Category::all();
+                @endphp
+                <select id="countries" name="category_id" class="border-0 w-40 p-4 focus:ring-0">
+                    <option selected value="all">All Categories</option>
+                    @foreach ($categories as $category)
+                        <option value={{ $category->id }}>{{ $category->category }}</option>
+                    @endforeach
                 </select>
             </div>
 

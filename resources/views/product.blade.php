@@ -13,17 +13,17 @@
     <div class="my-10">
         <div class="container mx-auto">
             <div class="grid grid-cols-12 gap-6">
-                <div class="col-span-6">
+                <div class="col-span-12 lg:col-span-6">
                     <div class="flex flex-col">
                         @php
                             $decoded_pictures = json_decode($product->pictures);
                             $first_picture = $decoded_pictures[0];
                         @endphp
                         <a href="{{ $first_picture }}" class="img-magnifier-container">
-                            <img src="{{ $first_picture }}" class="w-[40rem] h-[25rem] object-cover" id="active-image"
-                                alt="Loading...">
+                            <img src="{{ $first_picture }}" class="w-full lg:w-[40rem] h-[25rem] mx-auto object-cover"
+                                id="active-image" alt="Loading...">
                         </a>
-                        <div class="product-images grid grid-cols-12 gap-4 mt-5">
+                        <div class="product-images grid grid-cols-12 items-center gap-4 mt-5">
                             @foreach ($decoded_pictures as $picture)
                                 <div class="col-span-3">
                                     <img src="{{ $picture }}"
@@ -31,13 +31,14 @@
                                         alt="Loading...">
                                 </div>
                             @endforeach
-
                         </div>
                     </div>
                 </div>
-                <div class="col-span-6">
+                <div class="col-span-12 lg:col-span-6">
                     <div class="flex flex-col gap-4">
-                        <span>Home / {{ $product->category->category }} / {{ $product->title }}</span>
+                        <a href="/shop?category={{ $product->category_id }}"
+                            class="hover:text-blue-500 font-semibold transition-all text-gray-400 text-sm">
+                            {{ $product->category->category }}</a>
                         <h1 class="font-bold text-4xl">{{ $product->title }}</h1>
                         <span class="text-gray-500"> {{ $product->average_rating }}
                             ({{ $product->total_reviews }})</span>

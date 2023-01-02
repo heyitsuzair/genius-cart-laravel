@@ -20,9 +20,8 @@ class ProductsController extends Controller
 
         /**
          * Getting All Products
-         */
-        $products = Product::filter(request(['category', 'minimum', 'maximum']))->paginate(6)->appends(request(['category', 'minimum', 'maximum']));
-
+         */;
+        $products = Product::filter(request(['category', 'minimum', 'maximum', 'query', 'category_id']))->paginate(6)->appends(request(['category', 'minimum', 'maximum', 'query', 'category_id']));
 
         for ($i = 0; $i < count($products); $i++) {
             $price = $products[$i]->price;

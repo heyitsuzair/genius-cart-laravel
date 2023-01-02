@@ -4,8 +4,9 @@
     @foreach ($categories as $category)
         <div class="my-3">
             <a href="/shop?category={{ $category->id }}">
+
                 <span
-                    class="text-gray-600 text-sm transition-all hover:tracking-wider hover:text-blue-500 hover:text-base font-medium mx-4">{{ $category->category }}</span>
+                    class="text-sm transition-all hover:tracking-wider hover:text-blue-500 hover:text-base font-medium mx-4 {{ request('category') == $category->id ? 'text-blue-500' : 'text-gray-600 ' }}">{{ $category->category }}</span>
             </a>
         </div>
     @endforeach
