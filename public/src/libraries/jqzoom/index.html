@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Documentation</title>
+<link rel="stylesheet" href="css/jqzoom.css" type="text/css">
+<style type="text/css">
+.functions { padding:0px;border: 1px solid #f1f1f1;clear: both; list-style-type: none; color: #444444; position: relative; margin-left: 6px; margin-bottom: 6px; }*/
+ul.functions{position: relative;float:left; clear: both;list-style-type: none; margin: 0 0 0px 0px; border: 1px solid #f1f1f1; background: #f7f7f7; font-size: 11px; color: #606060; font: "Courier New", Courier, monospace;width:100%; }
+ul.functions li {float: left; background: #f7f7f7; clear: both; width: 100%;vertical-align:middle;padding-top:5px;padding-bottom:5px;}
+ul.functions li.evenlist{background:#FFF}
+ul.functions li.head{background:#EEE;font-weight:bold;color:#333;}
+ul.functions li div.function { margin-left:6px;float: left; font-weight: bold; width: 150px; }
+ul.functions li div.explained { float: left; width: 480px; }
+ul.functions li div.default{font-weight: bold;float: left; width: 100px; }
+.code{max-height:500px;min-width:28em;margin:1.2em 5px 1.5em 2.8em;background:#fefefe;border:1px solid #bbb;font-size:14px;padding:2px 3px 6px 3px;color:#0101ff;overflow:auto;word-wrap:break-word}
+.sb{font-weight:bold}
+.note{margin:.3em auto .3em 1em;border:1px solid #08fe08;background:#efeffe;padding:.15em .2em;font-size:.9em;text-indent:1.5em;font-style:oblique}
+</style>
+</head>
+<body>
+<h1>JQZoom Image Magnifier</h1>
+<p><strong>JQZoom is a javascript image magnifier</strong> built at the top of the jQuery javascript framework. jQzoom is an easy to use script to magnify / zoom part or image; with on or multiple images (gallery).</p><br/>
+Home page is at: <a href="http://www.mind-projects.it/projects/jqzoom/" title="JQZoom">http://www.mind-projects.it/projects/jqzoom/</a> <br/>
+ &bull; Downloaded from: <a href="http://coursesweb.net/jquery/jqzoom-image-magnifier_jp" title="JQZoom">http://coursesweb.net/jquery/jqzoom-image-magnifier_jp</a> <br/><br/>
+ - <strong>Examples are in "demos" folder.</strong>
+<h2>Installation</h2>
+ 1. First, to use this plugin, copy the "<span class="sb">css</span>" and "<span class="sb">js</span>" folders (or their files in "css", respectively "js" folders) on your server. The script comes with jQuery 2.1.0 ("jquery.js" in "js/" directory).<br/>
+ 2. Include these files in the &lt;head&gt; zone of your web page:
+<pre class="code">
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;css/jqzoom.css&quot; /&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;js/jquery.jqzoom-min.js&quot;&gt;&lt;/script&gt;
+</pre>
+ 3. The HTML code with the image must be added in this format:
+<pre class="code">
+&lt;a href=&quot;images/BIGIMAGE.JPG&quot; class=&quot;MYCLASS&quot; title=&quot;MYTITLE&quot;&gt;  
+  &lt;img src=&quot;images/SMALLIMAGE.JPG&quot; title=&quot;IMAGE TITLE&quot;&gt;  
+&lt;/a&gt;
+</pre>
+<p class="note">The anchor element wraps the small image you would like to zoom. The necessary and base elements are:<br/><br/> &nbsp; &nbsp;
+ SMALLIMAGE.JPG - Represents the small image you would like to zoom.<br/> &nbsp; &nbsp;
+ BIGIMAGE.JPG - Represents the big image that jQZoom will reveal.<br/> &nbsp; &nbsp;
+ MYCLASS - Represents the anchor class,that would be used to instantiate the jQZoom script to all the elements matching this class (you can use an ID as well).<br/> &nbsp; &nbsp;
+ MYTITLE / IMAGE TITLE - Anchor title and/or image title that will be used to show the zoom title close to the jQZoom Window.<br/><br/>
+ - <span class="sb">The SMALLIMAGE must be a scaled versione of the BIGIMAGE.</span></p><br/>
+ 4. Then load the plugin at window load.
+<pre class="code">
+&lt;script&gt;
+$(document).ready(function(){  
+  $('.MYCLASS').jqzoom();  
+});
+&lt;/script&gt;
+</pre>
+This will instantiate jQzoom in standard mode. You can pass more options, as in the example below.
+<pre class="code">
+&lt;script&gt;
+$(document).ready(function(){  
+  var options = {  
+    zoomType: 'standard',  
+    lens: true,  
+    preloadImages: true,  
+    alwaysOn: false,  
+    zoomWidth: 300,  
+    zoomHeight: 250,  
+    xOffset: 90,  
+    yOffset: 30,  
+    position: 'left'  
+    //...MORE OPTIONS
+  };
+  $('.MYCLASS').jqzoom(options);
+});
+&lt;/script&gt;
+</pre>
+<h3>Image Gallery with JQZoom</h3>
+The JQZoom plugin can also be used to create image gallery with zoom efect.<br/>
+ 1. Attach the gallery ID to your main anchor "rel" attribute.
+<pre class="code">
+&lt;a href=&quot;images/BIGIMAGE.JPG&quot; class=&quot;MYCLASS&quot; title=&quot;MYTITLE&quot; rel="gal1"&gt;  
+  &lt;img src=&quot;images/SMALLIMAGE.JPG&quot; title=&quot;IMAGE TITLE&quot;&gt;  
+&lt;/a&gt;
+</pre>
+2. Manage your thumbnails "class" and "rel" attributes.<br/>
+ - The class "zoomThumbActive" is attached to your thumbnails by jQzoom. By default specify this class to the selected thumbnail.
+<pre class="code">
+&lt;a class=&quot;zoomThumbActive&quot; href=&quot;#&quot; rel=&quot;{gallery: 'gal1', smallimage: './imgProd/SMALLIMAGE1.jpg',largeimage: './imgProd/LARGEIMAGE1.jpg'}&quot;&gt;  
+  &lt;img src=&quot;imgProd/thumbs/THUMBIMG1.jpg&quot; title=&quot;thumb1&quot; /&gt;
+&lt;/a&gt;
+</pre>
+<p class="note">In image gal1, the structure of the thumbnail "rel" attribute is very important.The base elements are:<br/><br/> &nbsp; &nbsp;
+ gallery : the ID of the gallery to which it belongs.<br/> &nbsp; &nbsp;
+ smallimage : the path to the SMALLIMAGE to be loaded on the when you click on the thumbnail.<br/> &nbsp; &nbsp;
+ largeimage : the path to the LARGEIMAGE</p>
+<h2>Configuration Options</h2>
+<ul class="functions">
+<li class="head">
+ <div class="function">OPTION NAME</div>
+ <div class="default">DEFAULT</div>
+ <div class="explained">DESCRIPTION</div>
+</li>
+<li class="evenlist">
+ <div class="function">zoomType</div>
+ <div class="default">'standard'</div>
+ <div class="explained">The others admitted option values are <strong>'reverse'</strong>,<strong>'drag'</strong>,<strong>'innerzoom'</strong>.</div>
+</li>
+<li>
+ <div class="function">zoomWidth</div>
+<div class="default">300</div>
+ <div class="explained">The popup window width showing the zoomed area.</div>
+</li>
+
+<li class="evenlist">
+ <div class="function">zoomHeight</div>
+ <div class="default">300</div>
+ <div class="explained">The popup window height showing the zoomed area.</div>
+</li>
+<li>
+ <div class="function">xOffset</div>
+ <div class="default">10</div>
+ <div class="explained">The popup window x offset from the small image.
+ (always <strong>positive</strong> to move the popup window more on the right if position is "right" or more on the left if position is "left")
+ </div>
+</li>
+<li class="evenlist">
+ <div class="function">yOffset</div>
+ <div class="default">0</div>
+ <div class="explained">The popup window y offset from the small image.
+ (always <strong>positive</strong> to move the popup window more on the top if position is "top" or more on the bottom if position is "bottom"),
+ </div>
+</li>
+<li>
+ <div class="function">position</div>
+ <div class="default">'right'</div>
+ <div class="explained">The popup window position.Admitted values:<strong>'right'</strong>&nbsp;,<strong>'left'</strong>&nbsp;,<strong>'top'</strong>&nbsp;,<strong>'bottom'</strong></div>
+</li>
+<li class="evenlist">
+ <div class="function">preloadImages</div>
+ <div class="default">true</div>
+ <div class="explained">if set to <strong>true</strong>,jqzoom will preload large images.</div>
+</li>
+<li class="evenlist">
+ <div class="function">preloadText</div>
+ <div class="default">'Loading zoom'</div>
+ <div class="explained">The text to show while preloading images.</div>
+</li>
+<li>
+ <div class="function">title</div>
+ <div class="default">true</div>
+ <div class="explained">Show a small title over the zoomed window. It can be the anchor title and if not specified, it will get the small image title. (options: <strong>true</strong>, <strong>false</strong>)</div>
+</li>
+<li class="evenlist">
+ <div class="function">lens</div>
+ <div class="default">true</div>
+ <div class="explained">if set to <strong>false</strong>,the small lens,over the image, won't show.</div>
+</li>
+<li class="evenlist">
+ <div class="function">imageOpacity</div>
+ <div class="default">0.4</div>
+ <div class="explained">Set the image opacity when the 'zoomType' option is set to 'reverse'.</div>
+</li>
+
+<li>
+ <div class="function">showEffect</div>
+ <div class="default">'show'</div>
+ <div class="explained">The effect by which showing the popup window.Options available: <strong>'show'</strong>&nbsp;,<strong>'fadein'</strong>.</div>
+</li>
+<li class="evenlist">
+ <div class="function">hideEffect</div>
+ <div class="default">'hide'</div>
+ <div class="explained">The effect by which hiding the popup window.Options available: <strong>'hide'</strong>&nbsp;,<strong>'fadeout'</strong>.</div>
+</li>
+<li>
+ <div class="function">fadeinSpeed</div>
+ <div class="default">'slow'</div>
+ <div class="explained">Changes fade in speed,in case the showEffect option is set to 'fadein'.(options: <strong>'fast'</strong>,<strong>'slow'</strong>,<strong>number</strong>)</div>
+</li>
+<li class="evenlist">
+ <div class="function">fadeoutSpeed</div>
+ <div class="default">'2000'</div>
+ <div class="explained">Changes fade out speed,in case the hideEffect option is set to 'fadeout'.(options: <strong>'fast'</strong>,<strong>'slow'</strong>,<strong>number</strong>)</div>
+</li>
+</ul> <br/ style="clear:both;"><hr/> <br/><br/>
+</body>
+</html>

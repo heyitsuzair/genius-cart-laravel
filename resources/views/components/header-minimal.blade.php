@@ -32,7 +32,7 @@
                 <ul class="font-medium bg-inherit flex gap-7">
                     @foreach ($navMenu as $nav)
                         <li
-                            class="{{ $currentRoute == $nav['title'] ? 'border-b-2 text-blue-500 border-blue-500' : 'text-gray-700' }} hover:text-blue-500 hover:border-b-2 hover:border-blue-500 transition">
+                            class="{{ $currentRoute == $nav['title'] ? 'border-b-2 text-blue-500 border-blue-500' : 'text-gray-700 border-b-2 border-white' }} hover:text-blue-500 hover:border-b-2 hover:border-blue-500 transition">
                             <a href="{{ $nav['link'] }}" class="block py-2  text-sm
                             p-0"
                                 aria-current="page">{{ $nav['title'] }}</a>

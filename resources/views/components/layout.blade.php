@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/x-icon" href="{{ asset('src/images/favicon.png') }}" />
+    <link rel="stylesheet" href="{{ asset('/src/libraries/jqzoom/css/jqzoom.css') }}">
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.5.5/dist/flowbite.min.css" />
@@ -26,8 +27,9 @@
         {{ $slot }}
     </main>
     @yield('footer')
-    <script src="{{ asset('src/js/index.js') }}" type="module"></script>
+
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
+    <script src="{{ asset('src/js/index.js') }}" type="module"></script>
 </body>
 
 </html>

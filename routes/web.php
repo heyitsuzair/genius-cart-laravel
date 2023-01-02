@@ -28,6 +28,7 @@ Route::get('/contact', function () {
 })->name('Contact');
 
 Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
+Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');
 /**
  * Views ------------------->
  */
@@ -40,4 +41,11 @@ Route::get('/switch-currency', [ProductsController::class, 'switchCurrency']);
  * Currency ----------->
  */
 
+/**
+ * Actions ----------->
+ */
 Route::post('/contact', [ContactController::class, 'create']);
+Route::post('/add-to-wishlist', [ProductsController::class, 'addToWishlist']);
+/**
+ * Actions ----------->
+ */

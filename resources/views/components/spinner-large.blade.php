@@ -1,4 +1,4 @@
-<div role="status" class="w-screen fixed top-0 h-screen flex items-center justify-center spinner-large bg-white z-[21]">
+<div role="status" class="w-screen fixed top-0 h-screen flex items-center justify-center spinner-large bg-white z-[22]">
     <svg class="inline mr-2 w-20 h-20 text-gray-200 animate-spin  fill-blue-500" viewBox="0 0 100 101" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path

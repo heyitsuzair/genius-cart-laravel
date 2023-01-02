@@ -1,6 +1,6 @@
 @if (session()->has('form-success'))
     <div id="toast-success"
-        class="toast flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow-xl fixed top-4 right-4 z-20"
+        class="toast flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow-xl fixed top-4 right-4 z-[21]"
         role="alert">
         <div
             class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
@@ -29,7 +29,7 @@
 
 @if (session()->has('form-failure'))
     <div id="toast-danger"
-        class="toast flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow-xl fixed top-4 right-4 z-20"
+        class="toast flex items-center p-4 mb-4 w-full max-w-xs text-gray-500 bg-white rounded-lg shadow-xl fixed top-4 right-4 z-[21]"
         role="alert">
         <div
             class="inline-flex flex-shrink-0 justify-center items-center w-8 h-8 text-red-500 bg-red-100 rounded-lg dark:bg-red-800 dark:text-red-200">
