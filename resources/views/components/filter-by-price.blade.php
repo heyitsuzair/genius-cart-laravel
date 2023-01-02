@@ -1,4 +1,4 @@
-<form method="get" action="/shop/filterBy" class="flex justify-center items-center">
+<form method="get" action="/shop" class="flex justify-center items-center">
     <div x-data="range()" x-init="mintrigger();
     maxtrigger()" class="relative max-w-xl w-full">
         <div>

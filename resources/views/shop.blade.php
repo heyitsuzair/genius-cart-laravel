@@ -29,11 +29,17 @@
             </div>
             <div class="my-5">
                 <div class="grid grid-cols-12 gap-6">
-                    @foreach ($products as $product)
-                        <div class="col-span-12 sm:col-span-6 lg:col-span-4">
-                            <x-product-card :product="$product" />
+                    @unless(count($products) < 1)
+                        @foreach ($products as $product)
+                            <div class="col-span-12 sm:col-span-6 lg:col-span-4">
+                                <x-product-card :product="$product" />
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-span-12">
+                            Sorry We Cannot Find What You Are Looking For!
                         </div>
-                    @endforeach
+                    @endunless
                 </div>
             </div>
             <div class="my-5">

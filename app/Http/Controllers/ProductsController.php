@@ -18,7 +18,7 @@ class ProductsController extends Controller
         /**
          * Getting All Products
          */
-        $products = Product::paginate(6);
+        $products = Product::filter(request(['category', 'minimum', 'maximum']))->paginate(6)->appends(request(['category', 'minimum', 'maximum']));
         return view('shop', [
             'categories' => $categories,
             'products' => $products

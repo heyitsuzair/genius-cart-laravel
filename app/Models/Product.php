@@ -12,6 +12,19 @@ class Product extends Model
     public $timestamps = false;
 
     /**
+     * Scope Filter By Category
+     */
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['category'] ?? false) {
+            return $query->where('category_id', $filters['category']);
+        }
+        if ($filters['minimum'] ?? false) {
+            return $query->whereBetween('price', [$filters['minimum'], $filters['maximum']]);
+        }
+    }
+
+    /**
      * Belongs To relationship
      */
     public function category()
