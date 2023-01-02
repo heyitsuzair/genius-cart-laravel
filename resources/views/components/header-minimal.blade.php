@@ -46,10 +46,18 @@
             <x-icon-circle class="w-14 h-14 cursor-pointer relative" :badge="false" id="search">
                 fa fa-search text-md
             </x-icon-circle>
-            <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="2"
-                id="wishlist">
-                fa-regular fa-heart text-md
-            </x-icon-circle>
+
+            @php
+                use App\Models\Wishlist;
+                $ip = \Request::ip();
+                $wishlists_count = Wishlist::where('ip', $ip)->count();
+            @endphp
+            <a href="/wishlist">
+                <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="$wishlists_count"
+                    id="wishlist">
+                    fa-regular fa-heart text-md
+                </x-icon-circle>
+            </a>
             <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="10"
                 id="cart">
                 fa-solid fa-basket-shopping text-md
