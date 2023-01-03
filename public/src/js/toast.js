@@ -8,4 +8,4 @@ const toast = $(".toast");
  */
 setTimeout(function () {
     toast.fadeOut();
-}, 2000);
+}, 3000);

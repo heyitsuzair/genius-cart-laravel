@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Models\Review;
 use App\Models\Wishlist;
+use Validator;
 
 class ProductsController extends Controller
 {
@@ -103,19 +104,29 @@ class ProductsController extends Controller
             'message.required' => 'Message Cannot Be Empty',
             'rating.required' => 'Stars Must Be Greater Than One',
         ];
-        $formFields = $req->validate([
+        $formFields = Validator::make($req->all(), [
             'name' => 'required|string|min:3',
             'email' => 'required|email|string',
             'message' => 'required|string',
             'rating' => 'required|numeric|between:1,5',
         ], $custom_error_messages);
 
-        $formFields['product_id'] = $product->id;
+        if ($formFields->fails()) {
+            return redirect()->back()->with('form-failure', 'Please Resolve Errors In Form!')->withErrors($formFields)->withInput($req->all());
+        }
+
+        $fields = [
+            'product_id' => $product->id,
+            'name' => $req->name,
+            'email' => $req->email,
+            'message' => $req->message,
+            'rating' => $req->rating
+        ];
 
         /**
          * Adding to database
          */
-        $add_review = Review::create($formFields);
+        $add_review = Review::create($fields);
 
         /**
          * Count One Stars In Database Against Product ID
@@ -154,6 +165,6 @@ class ProductsController extends Controller
          */
         $product->update(['average_rating' => $average_rating, 'total_reviews' => $product->total_reviews + 1]);
 
-        return redirect()->back()->with('form-success', 'Review Added');
+        return redirect()->back()->with('form-success', 'Review Added!');
     }
 }

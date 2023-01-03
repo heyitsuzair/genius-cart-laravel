@@ -3,7 +3,7 @@
 @php
     $pictures = json_decode($product->pictures);
 @endphp
-<a href="product/{{ $product->id }}">
+<a href="/product/{{ $product->id }}">
     <div class="rounded-lg shadow-xl">
 
         <img src={{ $pictures[0] }} class="w-full h-[10rem] mx-auto rounded-t-lg object-cover" alt="Loading...">
