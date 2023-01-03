@@ -20,74 +20,27 @@
     </div>
     <div class="hidden" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
         <div class="grid grid-cols-12 justify-center gap-4">
-            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
-                <div class="flex items-center gap-2 justify-between">
-                    <div class="items-center flex gap-4">
-                        <img src="{{ asset('src/images/avatar.jpg') }}"
-                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
-                        <div>
-                            <strong>Muhammad Uzair</strong>
-                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deleniti,
-                                dolorem?</p>
+
+            @foreach ($product->reviews->toArray() as $review)
+                <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
+                    <div class="flex items-center gap-2 justify-between">
+                        <div class="items-center flex gap-4">
+                            <img src="{{ asset('src/images/avatar.jpg') }}"
+                                class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
+                            <div>
+                                <strong>{{ $review['name'] }}</strong>
+                                <p class="text-gray-600 text-sm">{{ $review['message'] }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <strong class="mt-1">{{ $review['rating'] }}</strong> <i
+                                class="fa fa-star text-yellow-500" aria-hidden="true"></i>
                         </div>
                     </div>
-                    <div class="flex items-center gap-2">
-                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
-                    </div>
                 </div>
-            </div>
-            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
-                <div class="flex items-center gap-2 justify-between">
-                    <div class="items-center flex gap-4">
-                        <img src="{{ asset('src/images/avatar.jpg') }}"
-                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
-                        <div>
-                            <strong>Muhammad Uzair</strong>
-                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deleniti,
-                                dolorem?</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
-                <div class="flex items-center gap-2 justify-between">
-                    <div class="items-center flex gap-4">
-                        <img src="{{ asset('src/images/avatar.jpg') }}"
-                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
-                        <div>
-                            <strong>Muhammad Uzair</strong>
-                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deleniti,
-                                dolorem?</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
-                <div class="flex items-center gap-2 justify-between">
-                    <div class="items-center flex gap-4">
-                        <img src="{{ asset('src/images/avatar.jpg') }}"
-                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
-                        <div>
-                            <strong>Muhammad Uzair</strong>
-                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Deleniti,
-                                dolorem?</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+
+
         </div>
 
         <div class="review-form p-4 bg-gray-100 w-1/2 mt-4 rounded-lg">

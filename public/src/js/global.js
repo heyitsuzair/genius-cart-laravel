@@ -11,7 +11,7 @@ const btnLoading = $(".btn-loading");
  */
 btnLoadable.on("click", function (e) {
     btnLoadableText.hide();
-    btnLoading.show();
+    btnLoading.css("display", "flex");
     btnLoadable.prop("disabled", true);
     /**
      * Submit The Closest Form

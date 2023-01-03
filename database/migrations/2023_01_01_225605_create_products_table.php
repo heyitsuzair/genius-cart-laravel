@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('pictures');
             $table->integer('price');
             $table->integer('quantity');
-            $table->integer('category_id');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->integer('total_reviews');
             $table->float('average_rating');
         });

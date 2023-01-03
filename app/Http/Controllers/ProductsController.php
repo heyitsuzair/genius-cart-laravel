@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Models\Review;
 use App\Models\Wishlist;
 
 class ProductsController extends Controller
@@ -47,6 +48,7 @@ class ProductsController extends Controller
     {
         $product_id = $product->id;
         $ip = $req->ip();
+
         /**
          * Currency Conversion According To Selected Currency
          */
@@ -82,5 +84,34 @@ class ProductsController extends Controller
         }
 
         return redirect()->back()->with('form-failure', 'Product Already In Wishlist');
+    }
+    public function addReview($id, Request $req)
+    {
+        /**
+         * Custom Error Messages
+         */
+        $custom_error_messages = [
+            'name.required' => 'Name is required',
+            'name.min' => 'Name Must Include Atleast Three Characters',
+            'email.required' => 'Email is required',
+            'email.email' => 'Please Enter A Valid Email',
+            'message.required' => 'Message Cannot Be Empty',
+            'rating.required' => 'Stars Must Be Greater Than One',
+        ];
+        $formFields = $req->validate([
+            'name' => 'required|string|min:3',
+            'email' => 'required|email|string',
+            'message' => 'required|string',
+            'rating' => 'required|numeric|between:1,5',
+        ], $custom_error_messages);
+
+        $formFields['product_id'] = $id;
+
+        /**
+         * Adding to database
+         */
+        $add_review = Review::create($formFields);
+
+        return redirect()->back()->with('form-success', 'Review Added');
     }
 }

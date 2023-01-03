@@ -1,7 +1,9 @@
 /**
  * Using jQuery Plugin
  */
+const initialRating = $("#initialRating");
 jQuery(".my-rating").starRating({
+    initialRating: initialRating.val(),
     totalStars: 5,
     starShape: "rounded",
     starSize: 20,
