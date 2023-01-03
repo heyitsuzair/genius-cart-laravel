@@ -12,11 +12,17 @@
             <h2 class="text-left font-normal my-3 min-h-[3rem]">{{ Str::substr($product->title, 0, 50) }}...
             </h2>
             <div class="flex justify-between">
-                <span class="font-semibold text-sm">
+                <span class="font-semibold text-sm mt-0.5">
                     {{ session('currency') ?? 'PKR' }} {{ $product->price }}
                 </span>
-                <span class="text-sm text-gray-600">
-                    {{ $product->total_reviews }} ({{ $product->average_rating }})
+                <span class="text-gray-500 flex items-center gap-2">
+                    <input type="hidden" name="rating" id="average-rating" value="{{ $product->average_rating }}">
+                    <div class="product-rating">
+                    </div>
+                    <div class="-mt-0.5">
+                        <span>{{ $product->average_rating }}
+                            ({{ $product->total_reviews }})</span>
+                    </div>
                 </span>
             </div>
             <form action="add-to-cart" method="POST" class="my-4 flex gap-2 items-center">

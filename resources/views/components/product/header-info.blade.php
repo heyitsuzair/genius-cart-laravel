@@ -26,8 +26,15 @@
                 class="hover:text-blue-500 font-semibold transition-all text-gray-400 text-sm">
                 {{ $product->category->category }}</a>
             <h1 class="font-bold text-4xl">{{ $product->title }}</h1>
-            <span class="text-gray-500"> {{ $product->average_rating }}
-                ({{ $product->total_reviews }})</span>
+            <span class="text-gray-500 flex items-center gap-2">
+                <input type="hidden" name="rating" id="average-rating" value="{{ $product->average_rating }}">
+                <div class="product-rating">
+                </div>
+                <div class="-mt-0.5">
+                    <span>{{ $product->average_rating }}
+                        ({{ $product->total_reviews }})</span>
+                </div>
+            </span>
             <strong>{{ session('currency') ?? 'PKR' }} {{ $product->price }}</strong>
             <span
                 class="{{ $product->quantity > 0 ? 'text-green-500' : 'text-red-500' }}">{{ $product->quantity > 0 ? 'In Stock' : 'Out Of Stock' }}</span>
@@ -60,7 +67,7 @@
                         <i class="fa fa-minus" aria-hidden="true"></i>
                     </button>
                     <input type="number"
-                        class="border-0 outline-0 focus:ring-0 text-center w-[7%] pl-0 border border-gray-300 pr-0"
+                        class="border-0 outline-0 focus:ring-0 text-center w-[8%] pl-0 xl:pl-3.5 border border-gray-300 pr-0"
                         value="1" name="quantity" id="single_prod_quantity" readonly>
                     <input type="hidden" value="add" name="addition_type" id="addition_type">
                     <button type="button" class="btn-green w-[7%] h-[2.6rem] plus-product border border-gray-300">

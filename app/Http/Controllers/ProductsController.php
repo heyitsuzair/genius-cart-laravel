@@ -85,7 +85,7 @@ class ProductsController extends Controller
 
         return redirect()->back()->with('form-failure', 'Product Already In Wishlist');
     }
-    public function addReview($id, Request $req)
+    public function addReview(Product $product, Request $req)
     {
         /**
          * Custom Error Messages
@@ -105,12 +105,49 @@ class ProductsController extends Controller
             'rating' => 'required|numeric|between:1,5',
         ], $custom_error_messages);
 
-        $formFields['product_id'] = $id;
+        $formFields['product_id'] = $product->id;
 
         /**
          * Adding to database
          */
         $add_review = Review::create($formFields);
+
+        /**
+         * Count One Stars In Database Against Product ID
+         */
+        $one_star = Review::where('product_id', $product->id)->where('rating', '1')->count();
+        /**
+         * Count Two Stars In Database Against Product ID
+         */
+        $two_star = Review::where('product_id', $product->id)->where('rating', '2')->count();
+        /**
+         * Count Three Stars In Database Against Product ID
+         */
+        $three_star = Review::where('product_id', $product->id)->where('rating', '3')->count();
+        /**
+         * Count Four Stars In Database Against Product ID
+         */
+        $four_star = Review::where('product_id', $product->id)->where('rating', '4')->count();
+        /**
+         * Count Five Stars In Database Against Product ID
+         */
+        $five_star = Review::where('product_id', $product->id)->where('rating', '5')->count();
+
+        /**
+         * Product Average Rating
+         */
+        $average_rating =
+            (5 * $five_star +
+                4 * $four_star +
+                3 * $three_star +
+                2 * $two_star +
+                1 * $one_star) /
+            ($five_star + $four_star + $three_star + $two_star + $one_star);
+
+        /**
+         * Updating Product Average Rating And Total Reviews By Adding One To The Current Product Total Reviews
+         */
+        $product->update(['average_rating' => $average_rating, 'total_reviews' => $product->total_reviews + 1]);
 
         return redirect()->back()->with('form-success', 'Review Added');
     }

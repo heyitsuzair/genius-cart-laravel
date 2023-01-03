@@ -46,7 +46,7 @@ Route::get('/switch-currency', [ProductsController::class, 'switchCurrency']);
  */
 Route::post('/contact', [ContactController::class, 'create']);
 Route::post('/add-to-wishlist', [ProductsController::class, 'addToWishlist']);
-Route::post('/product/{id}/add-review', [ProductsController::class, 'addReview']);
+Route::post('/product/{product}/add-review', [ProductsController::class, 'addReview']);
 /**
  * Actions ----------->
  */
