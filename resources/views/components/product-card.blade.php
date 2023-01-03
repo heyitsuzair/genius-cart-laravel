@@ -6,8 +6,7 @@
 <a href="product/{{ $product->id }}">
     <div class="rounded-lg shadow-xl">
 
-        <img src={{ $pictures[0] }} class="w-full lg:w-[20rem] h-[10rem] mx-auto rounded-t-lg object-cover"
-            alt="Loading...">
+        <img src={{ $pictures[0] }} class="w-full h-[10rem] mx-auto rounded-t-lg object-cover" alt="Loading...">
         <div class="p-4">
             <h2 class="text-left font-normal my-3 min-h-[3rem]">{{ Str::substr($product->title, 0, 50) }}...
             </h2>

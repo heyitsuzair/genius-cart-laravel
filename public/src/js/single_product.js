@@ -66,6 +66,26 @@ $(minusProduct).on("click", () => {
  */
 $(buyNowBtn).on("click", () => {
     $(addType).val("buy");
-
     $(addType).val() === "buy" && $(addType).closest("form").submit();
+});
+
+$(".related-products").owlCarousel({
+    mouseDrag: true,
+    loop: true,
+    dots: false,
+    nav: true,
+    margin: 20,
+    navText: [
+        "<i class='fa fa-chevron-left bg-blue-500 text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl'></i>",
+        "<i class='fa fa-chevron-right bg-blue-500 text-white w-12 h-12 flex items-center justify-center rounded-full text-2xl'></i>",
+    ],
+    responsive: {
+        0: {
+            items: 1,
+            stagePadding: 100,
+        },
+        1000: {
+            items: 3,
+        },
+    },
 });

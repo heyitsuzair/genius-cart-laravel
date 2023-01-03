@@ -55,11 +55,16 @@ class ProductsController extends Controller
         $product->price = Currency::convert()->from('PKR')->to(Session::get('currency') ?? 'PKR')->amount($product->price)->round(2)->get();
 
         /**
+         * Get Related Products
+         */
+        $related_products = Product::where('category_id', $product->category_id)->whereNotIn('id', [$product->id])->get();
+
+        /**
          * Checking If Product Is In Wishlist
          */
         $is_in_wishlist = Wishlist::where('product_id', $product_id)->where('ip', $ip)->exists();
 
-        return view('product', compact('product', 'is_in_wishlist'));
+        return view('product', compact('product', 'is_in_wishlist', 'related_products'));
     }
 
     public function addToWishlist(Request $req)
