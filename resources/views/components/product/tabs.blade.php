@@ -18,11 +18,77 @@
     <div class="hidden p-4 bg-gray-100 rounded-lg" id="description" role="tabpanel" aria-labelledby="description-tab">
         <p class="text-sm text-gray-500 tracking-wider leading-6">{{ $product->description }}</p>
     </div>
-    <div class="hidden p-4 bg-gray-100 rounded-lg" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-        <p class="text-sm text-gray-500">This is some placeholder content the <strong
-                class="font-medium text-gray-800">Dashboard tab's associated content</strong>. Clicking
-            another tab will toggle the visibility of this one for the next. The tab JavaScript swaps classes to control
-            the content visibility and styling.</p>
+    <div class="hidden" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+        <div class="grid grid-cols-12 justify-center gap-4">
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
+                <div class="flex items-center gap-2 justify-between">
+                    <div class="items-center flex gap-4">
+                        <img src="{{ asset('src/images/avatar.jpg') }}"
+                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
+                        <div>
+                            <strong>Muhammad Uzair</strong>
+                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Deleniti,
+                                dolorem?</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
+                <div class="flex items-center gap-2 justify-between">
+                    <div class="items-center flex gap-4">
+                        <img src="{{ asset('src/images/avatar.jpg') }}"
+                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
+                        <div>
+                            <strong>Muhammad Uzair</strong>
+                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Deleniti,
+                                dolorem?</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
+                <div class="flex items-center gap-2 justify-between">
+                    <div class="items-center flex gap-4">
+                        <img src="{{ asset('src/images/avatar.jpg') }}"
+                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
+                        <div>
+                            <strong>Muhammad Uzair</strong>
+                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Deleniti,
+                                dolorem?</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12 md:col-span-6 lg:col-span-4 p-4 bg-gray-100 rounded-lg">
+                <div class="flex items-center gap-2 justify-between">
+                    <div class="items-center flex gap-4">
+                        <img src="{{ asset('src/images/avatar.jpg') }}"
+                            class="w-12 h-12 border border-black rounded-full object-cover" alt="Loading...">
+                        <div>
+                            <strong>Muhammad Uzair</strong>
+                            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Deleniti,
+                                dolorem?</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <strong class="mt-1">5</strong> <i class="fa fa-star text-yellow-500" aria-hidden="true"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>

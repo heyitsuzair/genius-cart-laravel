@@ -11,7 +11,7 @@
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
     <div class="my-10">
-        <div class="container mx-auto">
+        <div class="container mx-auto p-4 xl:p-0">
             <div>
                 @include('components.product.header-info', compact('product', 'is_in_wishlist'))
             </div>
