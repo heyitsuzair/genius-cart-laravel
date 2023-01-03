@@ -7,7 +7,4 @@ import "./toast.js";
 import "./icon.js";
 import "./product.js";
 import "./single_product.js";
-
-if (window.location.pathname === "/") {
-    $("body").css("overflow", "hidden");
-}
+import "./global.js";
