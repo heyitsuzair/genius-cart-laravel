@@ -269,4 +269,23 @@ class ProductsController extends Controller
             return redirect()->back()->with('form-failure', "Something Went Wrong!");
         }
     }
+    public function removeFromCart($product)
+    {
+        $cart = session()->get('cart', []);
+
+        /**
+         * Check if product is in cart or not (for security), if not than abort 403 else remove from cart
+         */
+        if (isset($cart[$product])) {
+
+            unset($cart[$product]);
+
+            session()->put('cart', $cart);
+
+            return redirect()->back()->with('form-success', 'Product Removed!');
+        }
+
+
+        abort("403");
+    }
 }

@@ -33,10 +33,10 @@
                                     Price
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Quantity
+                                    Sub Total
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Sub Total
+                                    Actions
                                 </th>
 
                             </tr>
@@ -65,10 +65,6 @@
                                             {{ session('currency') ?? 'PKR' }} {{ $product->price }}
                                         </td>
                                         <td class="px-6 py-4">
-                                            <span
-                                                class="{{ $product->quantity > 0 ? 'text-green-500' : 'text-red-500' }}">{{ $product->quantity > 0 ? 'In Stock' : 'Out Of Stock' }}</span>
-                                        </td>
-                                        <td class="px-6 py-4">
                                             {{ session('currency') ?? 'PKR' }}
                                             {{ intval($product->requested_quantity) * $product->price }}
                                         </td>
@@ -78,31 +74,33 @@
                                                 <div class="quantity gap-4 flex items-center">
                                                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                     <input type="hidden" name="prod_available_quantity"
-                                                        value="{{ $product->quantity }}" id="available_quantity">
+                                                        value="{{ $product->quantity }}"
+                                                        id="{{ $product->id . '-available-quantity' }}">
                                                     <button type="button"
-                                                        class="btn-green w-[10%] h-[2.6rem] minus-product border border-gray-300">
+                                                        class="btn-green w-[10%] h-[2.6rem] minus-product-cart border border-gray-300"
+                                                        data-id={{ $product->id }}>
                                                         <i class="fa fa-minus" aria-hidden="true"></i>
                                                     </button>
                                                     <input type="number"
-                                                        class="border-0 outline-0 focus:ring-0 text-center w-[20%] pl-0 xl:pl-3.5 border border-gray-300 pr-0"
+                                                        class="border-0 outline-0 focus:ring-0 text-center w-[20%] pl-0 xl:pl-3.5 border border-gray-300 pr-0 requested-quantity-{{ $product->id }}"
                                                         value="{{ intval($product->requested_quantity) }}" name="quantity"
-                                                        id="single_prod_quantity" readonly>
+                                                        readonly>
                                                     <input type="hidden" value="add" name="addition_type"
                                                         id="addition_type">
                                                     <button type="button"
-                                                        class="btn-green w-[10%] h-[2.6rem] plus-product border border-gray-300">
+                                                        class="btn-green w-[10%] h-[2.6rem] plus-product-cart border border-gray-300"
+                                                        data-id={{ $product->id }}>
                                                         <i class="fa fa-plus" aria-hidden="true"></i>
                                                     </button>
 
                                                     <button type="submit" name="add-to-cart"
                                                         {{ $product->quantity < 1 ? 'disabled' : '' }}
                                                         class=" {{ $product->quantity < 1 ? 'disabled' : '' }} bg-blue-500 hover:bg-blue-700 text-white rounded-lg disabled:opacity-50 disabled:hover:bg-blue-500 py-2 w-1/2 sm:w-1/3 ml-3 transition-all"
-                                                        id="add_to_cart">
+                                                        id="{{ $product->id . '-add-to-cart' }}">
                                                         <i class="fa fa-refresh" aria-hidden="true"></i>
                                                     </button>
                                             </form>
-                                            <form action="/product/{{ $product->id }}/remove-from-wishlist"
-                                                method="POST">
+                                            <form action="/product/{{ $product->id }}/remove-from-cart" method="POST">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit"><i
