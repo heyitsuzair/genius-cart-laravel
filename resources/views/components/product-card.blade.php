@@ -24,13 +24,29 @@
                     </div>
                 </span>
             </div>
-            <form action="add-to-cart" method="POST" class="my-4 flex gap-2 items-center">
+            <form action="product/add-to-cart" method="POST" class="my-4 flex gap-2 items-center">
                 @csrf
-                <button type="submit"
-                    class="bg-blue-500 text-white border-blue-500 border-2 hover:border-blue-700 text-center transition-all rounded-md text-sm py-2 hover:bg-blue-700 flex items-center justify-center w-4/5">
+                <input type="hidden" name="quantity" value="1">
+                <input type="hidden" name="addition_type" value="add">
+                <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                    Add To Cart
-                </button>
+                @php
+                    $is_in_cart = session('cart') && array_key_exists($product->id, session('cart'));
+                @endphp
+
+                @if ($is_in_cart)
+                    <button type="button"
+                        class="bg-blue-500 text-white border-blue-500 border-2 hover:border-blue-700 text-center transition-all rounded-md text-sm py-2 hover:bg-blue-700 flex items-center justify-center w-4/5">
+
+                        Edit &nbsp; <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                @else
+                    <button type="submit"
+                        class="bg-blue-500 text-white border-blue-500 border-2 hover:border-blue-700 text-center transition-all rounded-md text-sm py-2 hover:bg-blue-700 flex items-center justify-center w-4/5">
+
+                        Add To Cart
+                    </button>
+                @endif
                 <button type="button"
                     class="border-blue-500 w-[17%] border text-blue-500 transition-all hover:text-white text-center rounded-md text-sm py-2 hover:bg-blue-500 flex items-center justify-center">
                     <i class="fa fa-external-link py-1" aria-hidden="true"></i>
