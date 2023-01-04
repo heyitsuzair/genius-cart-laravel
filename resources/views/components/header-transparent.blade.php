@@ -45,7 +45,6 @@
                 fa fa-search text-md
             </x-icon-circle>
             @php
-                use App\Models\Wishlist;
                 $ip = \Request::ip();
                 
                 $cart_count = session('cart') ? count(session('cart')) : 0;

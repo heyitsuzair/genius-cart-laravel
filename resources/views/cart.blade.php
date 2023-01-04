@@ -119,7 +119,48 @@
                     </table>
                 </div>
             </div>
-            <div class="col-span-3">Hello</div>
+            <div class="col-span-3">
+                <div class=" lg:sticky lg:top-24">
+
+
+                    <aside class="shadow-md">
+                        <div class="bg-gray-100 py-2 border-b border-black px-3">
+                            <strong class="font-semibold">Cart Totals</strong>
+                        </div>
+                        <div class="py-4 border-b border-gray-300 gap-4 flex justify-between items-center px-3">
+                            <span>Sub Total</span>
+                            <strong class="font-semibold">
+                                @php
+                                    $total = 0;
+                                    
+                                    foreach ($products as $product) {
+                                        $total += $product->price * intval($product->requested_quantity);
+                                    }
+                                @endphp
+                                {{ session('currency') ?? 'PKR' }} {{ $total }}
+                            </strong>
+                        </div>
+                        <div class="py-4 border-b border-gray-300 gap-4 flex justify-between items-center px-3">
+                            <span>Delivery Charges</span>
+                            <strong class="font-semibold">
+                                {{ session('currency') ?? 'PKR' }} @php
+                                    echo Currency::convert()
+                                        ->from('PKR')
+                                        ->to(Session::get('currency') ?? 'PKR')
+                                        ->amount(250)
+                                        ->round(2)
+                                        ->get();
+                                @endphp
+                            </strong>
+                        </div>
+                    </aside>
+                    <div class="mt-4">
+                        <a href="/checkout"
+                            class="border-2 text-center hover:border-blue-500 transition-all flex items-center justify-center rounded-lg py-2">Proceed
+                            To Checkout</a>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>
