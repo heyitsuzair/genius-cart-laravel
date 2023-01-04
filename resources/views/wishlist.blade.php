@@ -50,10 +50,11 @@
                                 class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row"
                                     class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    <img src="{{ $first_picture }}" alt="Loading..." class="w-full h-12 object-cover">
+                                    <img src="{{ $first_picture }}" alt="Loading..."
+                                        class="w-full h-20 object-cover rounded-lg">
                                 </th>
                                 <td class="px-6 py-4">
-                                    <a href="/product/{{ $product->id }}">
+                                    <a href="/product/{{ $product->id }}" class="underline">
                                         {{ $product->title }}
                                     </a>
                                 </td>
@@ -64,15 +65,15 @@
                                     <span
                                         class="{{ $product->quantity > 0 ? 'text-green-500' : 'text-red-500' }}">{{ $product->quantity > 0 ? 'In Stock' : 'Out Of Stock' }}</span>
                                 </td>
-                                <td class="px-6 py-4 flex items-center justify-between gap-4">
+                                <td class="px-6 py-4 mt-5 flex items-center justify-between gap-4">
                                     <form action="product/add-to-cart" method="POST">
                                         @csrf
                                         <input type="hidden" name="quantity" value="1">
                                         <input type="hidden" name="addition_type" value="add">
                                         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
-                                        <button type="submit"
-                                            class="bg-blue-500 hover:bg-blue-700 transition-all rounded-lg text-white px-4 py-2">
+                                        <button type="submit" {{ $product->quantity > 0 ? '' : 'disabled' }}
+                                            class="disabled:hover:bg-blue-500 bg-blue-500 disabled:opacity-50 hover:bg-blue-700 transition-all rounded-lg text-white px-4 py-2">
                                             <span>Add To
                                                 Cart</span> <i class="fa fa-shopping-cart text-md font-bold"
                                                 aria-hidden="true"></i>
