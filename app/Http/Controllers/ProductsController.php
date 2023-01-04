@@ -60,10 +60,13 @@ class ProductsController extends Controller
          */
         $related_products = Product::where('category_id', $product->category_id)->whereNotIn('id', [$product->id])->get();
 
+
+
         /**
          * Checking If Product Is In Wishlist
          */
-        $is_in_wishlist = Wishlist::where('product_id', $product_id)->where('ip', $ip)->exists();
+        $wishlist = session()->get('wishlist', []);
+        $is_in_wishlist = isset($wishlist[$product_id]) ? true : false;
 
         return view('product', compact('product', 'is_in_wishlist', 'related_products'));
     }
@@ -74,22 +77,17 @@ class ProductsController extends Controller
          * Check If Product Is Already In Wishlist Against IP Address
          */
         $product_id = $req->product_id;
-        $ip = $req->ip();
+        $wishlist = session()->get('wishlist', []);
 
-        $is_already_inlist = Wishlist::where('product_id', $product_id)->where('ip', $ip)->exists();
-
-        /**
-         * If It Is Not In Wishlist Than Adding It To Wishlist Else Returning Error
-         */
-        if (!$is_already_inlist) {
-            Wishlist::create([
-                'product_id' => $product_id,
-                'ip' => $ip
-            ]);
-            return redirect()->back()->with('form-success', 'Product Added To Wishlist');
+        if (isset($wishlist[$product_id])) {
+            abort("403");
         }
 
-        return redirect()->back()->with('form-failure', 'Product Already In Wishlist');
+        $wishlist[$product_id] = 1;
+
+        session()->put('wishlist', $wishlist);
+
+        return redirect()->back()->with('form-success', 'Product Added To Wishlist!');
     }
     public function addReview(Product $product, Request $req)
     {

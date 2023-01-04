@@ -26,6 +26,10 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('contact');
 })->name('Contact');
+Route::get('/wishlist', function () {
+    return view('wishlist');
+})->name('Wishlist');
+
 
 Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');

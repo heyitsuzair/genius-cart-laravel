@@ -13,11 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wishlist', function (Blueprint $table) {
-            $table->id();
-            $table->integer('product_id');
-            $table->string('ip');
-        });
+        Schema::dropIfExists('wishlist');
     }
 
     /**
@@ -27,6 +23,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wishlist');
+        //
     }
 };

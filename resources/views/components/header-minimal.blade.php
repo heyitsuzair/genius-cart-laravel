@@ -50,9 +50,9 @@
             @php
                 use App\Models\Wishlist;
                 $ip = \Request::ip();
-                $wishlists_count = Wishlist::where('ip', $ip)->count();
                 
                 $cart_count = session('cart') ? count(session('cart')) : 0;
+                $wishlists_count = session('wishlist') ? count(session('wishlist')) : 0;
             @endphp
             <a href="/wishlist">
                 <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="$wishlists_count"
