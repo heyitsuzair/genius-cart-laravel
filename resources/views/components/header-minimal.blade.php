@@ -60,10 +60,12 @@
                     fa-regular fa-heart text-md
                 </x-icon-circle>
             </a>
-            <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="$cart_count"
-                id="cart">
-                fa-solid fa-basket-shopping text-md
-            </x-icon-circle>
+            <a href="/cart">
+                <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="$cart_count"
+                    id="cart">
+                    fa-solid fa-basket-shopping text-md
+                </x-icon-circle>
+            </a>
             <button type="button" data-drawer-target="drawer-right" data-drawer-backdrop="false"
                 data-drawer-show="drawer-right" data-drawer-placement="right" aria-controls="drawer-right">
                 <x-icon-circle class="lg:hidden w-14 h-14 cursor-pointer relative" :badge="false" id="cart">

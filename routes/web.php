@@ -22,8 +22,9 @@ use Illuminate\Support\Facades\Session;
  */
 Route::get('/', [ViewController::class, 'home'])->name('Home');
 Route::get('/contact', [ViewController::class, 'contact'])->name('Contact');
-Route::get('/wishlist', [ViewController::class, 'wishlist'])->name('Wishlist');
 Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
+Route::get('/wishlist', [ViewController::class, 'wishlist'])->name('Wishlist');
+Route::get('/cart', [ViewController::class, 'cart'])->name('Cart');
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');
 /**
  * Views ------------------->
