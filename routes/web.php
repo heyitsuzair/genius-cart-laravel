@@ -25,6 +25,7 @@ Route::get('/contact', [ViewController::class, 'contact'])->name('Contact');
 Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
 Route::get('/wishlist', [ViewController::class, 'wishlist'])->name('Wishlist');
 Route::get('/cart', [ViewController::class, 'cart'])->name('Cart');
+Route::get('/checkout', [ViewController::class, 'checkout'])->name('Checkout');
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');
 /**
  * Views ------------------->

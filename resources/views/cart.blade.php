@@ -18,7 +18,7 @@
             </x-heading-3xl>
         </div>
         <div class="grid grid-cols-12 gap-4 justify-center">
-            <div class="col-span-9">
+            <div class="{{ count($products) < 1 ? 'col-span-12' : 'col-span-9' }}">
                 <div class="relative overflow-x-auto shadow-md">
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase border-b border-black bg-gray-50">
@@ -119,10 +119,8 @@
                     </table>
                 </div>
             </div>
-            <div class="col-span-3">
+            <div class="{{ count($products) < 1 ? 'hidden' : 'col-span-3' }}">
                 <div class=" lg:sticky lg:top-24">
-
-
                     <aside class="shadow-md">
                         <div class="bg-gray-100 py-2 border-b border-black px-3">
                             <strong class="font-semibold">Cart Totals</strong>
