@@ -11,14 +11,14 @@
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
 
-    <div class="container mx-auto mb-40 mt-10">
+    <div class="container mx-auto mb-40 p-4 mt-10">
         <div class="mb-10">
             <x-heading-3xl :divider="true">
                 Cart
             </x-heading-3xl>
         </div>
         <div class="grid grid-cols-12 gap-4 justify-center">
-            <div class="{{ count($products) < 1 ? 'col-span-12' : 'col-span-9' }}">
+            <div class="{{ count($products) < 1 ? 'col-span-12' : 'col-span-12 lg:col-span-9' }}">
                 <div class="relative overflow-x-auto shadow-md">
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-gray-700 uppercase border-b border-black bg-gray-50">
@@ -119,7 +119,7 @@
                     </table>
                 </div>
             </div>
-            <div class="{{ count($products) < 1 ? 'hidden' : 'col-span-3' }}">
+            <div class="{{ count($products) < 1 ? 'hidden' : 'col-span-12 lg:col-span-3' }}">
                 <div class=" lg:sticky lg:top-24">
                     <aside class="shadow-md">
                         <div class="bg-gray-100 py-2 border-b border-black px-3">
@@ -148,6 +148,19 @@
                                         ->amount(250)
                                         ->round(2)
                                         ->get();
+                                @endphp
+                            </strong>
+                        </div>
+                        <div class="py-4 border-b border-gray-300 gap-4 flex justify-between items-center px-3">
+                            <span>Total</span>
+                            <strong class="font-semibold">
+                                {{ session('currency') ?? 'PKR' }} @php
+                                    echo Currency::convert()
+                                        ->from('PKR')
+                                        ->to(Session::get('currency') ?? 'PKR')
+                                        ->amount(250)
+                                        ->round(2)
+                                        ->get() + $total;
                                 @endphp
                             </strong>
                         </div>
