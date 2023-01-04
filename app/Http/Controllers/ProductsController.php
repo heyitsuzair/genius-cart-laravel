@@ -61,6 +61,11 @@ class ProductsController extends Controller
         $related_products = Product::where('category_id', $product->category_id)->whereNotIn('id', [$product->id])->get();
 
 
+        for ($i = 0; $i < count($related_products); $i++) {
+            $price = $related_products[$i]->price;
+            $currency = Currency::convert()->from('PKR')->to(Session::get('currency') ?? 'PKR')->amount($price)->round(2)->get();
+            $related_products[$i]->price = $currency;
+        }
 
         /**
          * Checking If Product Is In Wishlist
@@ -196,6 +201,20 @@ class ProductsController extends Controller
          */
         $is_product_found = Product::where('id', $req->product_id)->first();
 
+
+        /**
+         * Session
+         */
+        $wishlist = session()->get('wishlist', []);
+
+        /**
+         * Check If Product Is In Wishlist Than Remove The Item In Wishlist
+         */
+        if (isset($wishlist[$req->product_id])) {
+            unset($wishlist[$req->product_id]);
+            session()->put('wishlist', $wishlist);
+        }
+
         /**
          * !Checking If Product Is Found And Found Product Quantity Is Greater Than Requested Quantity Or Not
          */
@@ -206,10 +225,12 @@ class ProductsController extends Controller
              */
             if ($req->addition_type == 'add') {
                 /**
-                 * Get The Session
+                 * Get The Sessions
                  */
 
                 $cart = session()->get('cart', []);
+
+
                 /**
                  * Flash Messages
                  */
@@ -233,6 +254,9 @@ class ProductsController extends Controller
                 return redirect()->back()->with('form-success', $msg);
             }
 
+            /**
+             * If User Clicked Buy Now, Empty Cart And Add Product To Cart
+             */
             $cart = [];
             $cart[$req->product_id] = [
                 'quantity' => $req->quantity,

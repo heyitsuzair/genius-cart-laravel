@@ -11,8 +11,12 @@
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
 
-    <div class="container mx-auto my-20">
-
+    <div class="container mx-auto mb-40 mt-10">
+        <div class="mb-10">
+            <x-heading-3xl :divider="true">
+                Wishlist
+            </x-heading-3xl>
+        </div>
         <div class="relative overflow-x-auto shadow-md">
             <table class="w-full text-sm text-left text-gray-500">
                 <thead class="text-xs text-gray-700 uppercase border-b border-black bg-gray-50">
@@ -85,10 +89,9 @@
                         @endforeach
                     @else
                         <tr class="bg-white border-b hover:bg-gray-50">
-                            <td colspan="12">No Product Found In Wishlist</td>
+                            <td colspan="12" class="text-center  p-3">No Products Found In Wishlist</td>
                         </tr>
                     @endunless
-
 
                 </tbody>
             </table>

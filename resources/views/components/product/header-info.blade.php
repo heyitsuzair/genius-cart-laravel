@@ -1,3 +1,7 @@
+@php
+    $is_in_cart = session('cart') && array_key_exists($product->id, session('cart'));
+@endphp
+
 <div class="grid grid-cols-12 gap-6">
     <div class="col-span-12 lg:col-span-6">
         <div class="flex flex-col">
@@ -44,6 +48,11 @@
                     <i class="fa-regular fa-heart" aria-hidden="true"></i>
                     <span>Already In Wishlist</span>
                 </div>
+            @elseif ($is_in_cart)
+                <div>
+                    <i class="fa-regular fa-heart" aria-hidden="true"></i>
+                    <span>Already In Cart</span>
+                </div>
             @else
                 <form action="/add-to-wishlist" method="post" class="wishlist">
                     @csrf
@@ -55,9 +64,7 @@
                 </form>
             @endif
             <form action="/product/add-to-cart" method="post">
-                @php
-                    $is_in_cart = session('cart') && array_key_exists($product->id, session('cart'));
-                @endphp
+
                 @csrf
                 <div class="quantity mt-3 flex items-center">
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
