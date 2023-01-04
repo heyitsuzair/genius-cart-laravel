@@ -182,31 +182,44 @@ class ProductsController extends Controller
         if ($is_product_found && $is_product_found->quantity >= $req->quantity) {
 
             /**
-             * Get The Sessions
+             * Check If User Clicked On Buy Now Or Add To Cart
              */
-            $cart = session()->get('cart', []);
+            if ($req->addition_type == 'add') {
+                /**
+                 * Get The Session
+                 */
 
-            /**
-             * Flash Messages
-             */
-            $msg = '';
+                $cart = session()->get('cart', []);
+                /**
+                 * Flash Messages
+                 */
+                $msg = '';
 
-            /**
-             * ? If product is already available in the cart than increment the quantity else add to cart
-             */
-            if (isset($cart[$req->product_id])) {
-                $cart[$req->product_id]['quantity'] = $req->quantity;
+                /**
+                 * ? If product is already available in the cart than increment the quantity else add to cart
+                 */
+                if (isset($cart[$req->product_id])) {
+                    $cart[$req->product_id]['quantity'] = $req->quantity;
+                    session()->put('cart', $cart);
+                    $msg = 'Product Updated!';
+                } else {
+                    $cart[$req->product_id] = [
+                        'quantity' => $req->quantity,
+                    ];
+                    $msg = 'Product Added To Cart!';
+                }
+
                 session()->put('cart', $cart);
-                $msg = 'Product Updated!';
-            } else {
-                $cart[$req->product_id] = [
-                    'quantity' => $req->quantity,
-                ];
-                $msg = 'Product Added To Cart!';
+                return redirect()->back()->with('form-success', $msg);
             }
 
+            $cart = [];
+            $cart[$req->product_id] = [
+                'quantity' => $req->quantity,
+            ];
             session()->put('cart', $cart);
-            return redirect()->back()->with('form-success', $msg);
+
+            return redirect('/checkout');
         } else {
 
             return redirect()->back()->with('form-failure', "Something Went Wrong!");
