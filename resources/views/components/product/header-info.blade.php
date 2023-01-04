@@ -38,10 +38,7 @@
             <strong>{{ session('currency') ?? 'PKR' }} {{ $product->price }}</strong>
             <span
                 class="{{ $product->quantity > 0 ? 'text-green-500' : 'text-red-500' }}">{{ $product->quantity > 0 ? 'In Stock' : 'Out Of Stock' }}</span>
-            <div class="flex gap-2 items-center">
-                <i class="fa fa-tag" aria-hidden="true"></i>
-                <span><strong>Product SKU:</strong> Tcv6794KXS1</span>
-            </div>
+
             @if ($is_in_wishlist)
                 <div>
                     <i class="fa-regular fa-heart" aria-hidden="true"></i>
@@ -57,10 +54,13 @@
                     </button>
                 </form>
             @endif
-            <form action="/add-to-cart" method="post">
+            <form action="/product/add-to-cart" method="post">
+                @php
+                    $is_in_cart = session('cart') && array_key_exists($product->id, session('cart'));
+                @endphp
                 @csrf
                 <div class="quantity mt-3 flex items-center">
-                    <input type="hidden" name="producy_id" value="{{ $product->id }}">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <input type="hidden" name="prod_available_quantity" value="{{ $product->quantity }}"
                         id="available_quantity">
                     <button type="button" class="btn-green w-[7%] h-[2.6rem] minus-product border border-gray-300">
@@ -68,15 +68,17 @@
                     </button>
                     <input type="number"
                         class="border-0 outline-0 focus:ring-0 text-center w-[8%] pl-0 xl:pl-3.5 border border-gray-300 pr-0"
-                        value="1" name="quantity" id="single_prod_quantity" readonly>
+                        value="{{ $is_in_cart ? session('cart')[$product->id]['quantity'] : 1 }}" name="quantity"
+                        id="single_prod_quantity" readonly>
                     <input type="hidden" value="add" name="addition_type" id="addition_type">
                     <button type="button" class="btn-green w-[7%] h-[2.6rem] plus-product border border-gray-300">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                     </button>
+
                     <button type="submit" name="add-to-cart" {{ $product->quantity < 1 ? 'disabled' : '' }}
                         class=" {{ $product->quantity < 1 ? 'disabled' : '' }} bg-blue-500 hover:bg-blue-700 text-white rounded-lg disabled:opacity-50 disabled:hover:bg-blue-500 py-2 w-1/2 sm:w-1/3 ml-3 transition-all"
                         id="add_to_cart">
-                        <span class="btn-single-product">Add To Cart</span>
+                        <span class="btn-single-product">{{ $is_in_cart ? 'Save' : 'Add To Cart' }}</span>
                     </button>
                     <button type="button" name="buy-now" {{ $product->quantity < 1 ? 'disabled' : '' }}
                         class=" {{ $product->quantity < 1 ? 'disabled' : '' }} hover:bg-blue-500 bg-white text-blue-500 hover:text-white rounded-lg disabled:opacity-50 disabled:hover:bg-white disabled:hover:text-blue-500 py-2 w-1/2 sm:w-1/5 ml-3 border border-blue-500 transition-all"

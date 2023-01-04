@@ -6,5 +6,4 @@ import "./search.js";
 import "./toast.js";
 import "./icon.js";
 import "./product.js";
-import "./single_product.js";
 import "./global.js";

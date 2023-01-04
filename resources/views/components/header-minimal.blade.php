@@ -51,6 +51,8 @@
                 use App\Models\Wishlist;
                 $ip = \Request::ip();
                 $wishlists_count = Wishlist::where('ip', $ip)->count();
+                
+                $cart_count = session('cart') ? count(session('cart')) : 0;
             @endphp
             <a href="/wishlist">
                 <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="$wishlists_count"
@@ -58,7 +60,7 @@
                     fa-regular fa-heart text-md
                 </x-icon-circle>
             </a>
-            <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="10"
+            <x-icon-circle class="w-14 h-14 cursor-pointer relative icon-badged" :badge="true" :badgeValue="$cart_count"
                 id="cart">
                 fa-solid fa-basket-shopping text-md
             </x-icon-circle>

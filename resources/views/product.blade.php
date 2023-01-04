@@ -1,4 +1,4 @@
-@section('title', 'Product')
+@section('title', $product->title)
 
 @section('nav')
     <x-header-minimal />
@@ -7,6 +7,7 @@
 @section('footer')
     <x-footer />
 @endsection
+
 
 <x-layout>
     @include('partials.breadcrumb', ['value' => Route::current()->getName()])
@@ -22,6 +23,5 @@
                 @include('components.products-carousel', compact('related_products'))
             </div>
         </div>
-    </div>
     </div>
 </x-layout>

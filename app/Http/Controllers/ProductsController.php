@@ -167,4 +167,49 @@ class ProductsController extends Controller
 
         return redirect()->back()->with('form-success', 'Review Added!');
     }
+
+    public function addToCart(Request $req)
+    {
+
+        /**
+         * Fetching Product
+         */
+        $is_product_found = Product::where('id', $req->product_id)->first();
+
+        /**
+         * !Checking If Product Is Found And Found Product Quantity Is Greater Than Requested Quantity Or Not
+         */
+        if ($is_product_found && $is_product_found->quantity >= $req->quantity) {
+
+            /**
+             * Get The Sessions
+             */
+            $cart = session()->get('cart', []);
+
+            /**
+             * Flash Messages
+             */
+            $msg = '';
+
+            /**
+             * ? If product is already available in the cart than increment the quantity else add to cart
+             */
+            if (isset($cart[$req->product_id])) {
+                $cart[$req->product_id]['quantity'] = $req->quantity;
+                session()->put('cart', $cart);
+                $msg = 'Product Updated!';
+            } else {
+                $cart[$req->product_id] = [
+                    'quantity' => $req->quantity,
+                ];
+                $msg = 'Product Added To Cart!';
+            }
+
+            session()->put('cart', $cart);
+            return redirect()->back()->with('form-success', $msg);
+        } else {
+
+            return redirect()->back()->with('form-failure', "Something Went Wrong!");
+        }
+    }
 }
