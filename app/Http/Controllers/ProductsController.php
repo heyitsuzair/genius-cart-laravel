@@ -89,6 +89,28 @@ class ProductsController extends Controller
 
         return redirect()->back()->with('form-success', 'Product Added To Wishlist!');
     }
+
+
+    public function removeFromWishlist($product)
+    {
+        $wishlist = session()->get('wishlist', []);
+
+        /**
+         * Check if product is in wishlist or not (for security), if not than abort 403 else remove from wishlist
+         */
+        if (isset($wishlist[$product])) {
+
+            unset($wishlist[$product]);
+
+            session()->put('wishlist', $wishlist);
+
+            return redirect()->back()->with('form-success', 'Product Removed!');
+        }
+
+
+        abort("403");
+    }
+
     public function addReview(Product $product, Request $req)
     {
         /**

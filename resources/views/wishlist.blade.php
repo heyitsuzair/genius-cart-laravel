@@ -49,7 +49,9 @@
                                     <img src="{{ $first_picture }}" alt="Loading..." class="w-full h-12 object-cover">
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ $product->title }}
+                                    <a href="/product/{{ $product->id }}">
+                                        {{ $product->title }}
+                                    </a>
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ session('currency') ?? 'PKR' }} {{ $product->price }}
@@ -72,7 +74,9 @@
                                                 aria-hidden="true"></i>
                                         </button>
                                     </form>
-                                    <form action="/product/{{ $product->id }}/remove-from-cart">
+                                    <form action="/product/{{ $product->id }}/remove-from-wishlist" method="POST">
+                                        @method('DELETE')
+                                        @csrf
                                         <button type="submit"><i
                                                 class="fa fa-xmark text-lg text-black font-bold"></i></button>
                                     </form>
