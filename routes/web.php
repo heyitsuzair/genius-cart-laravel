@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Session;
 
@@ -19,18 +20,9 @@ use Illuminate\Support\Facades\Session;
 /**
  * Views ------------------->
  */
-Route::get('/', function () {
-    return view('index');
-})->name('Home');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('Contact');
-Route::get('/wishlist', function () {
-    return view('wishlist');
-})->name('Wishlist');
-
-
+Route::get('/', [ViewController::class, 'home'])->name('Home');
+Route::get('/contact', [ViewController::class, 'contact'])->name('Contact');
+Route::get('/wishlist', [ViewController::class, 'wishlist'])->name('Wishlist');
 Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');
 /**
