@@ -24,7 +24,7 @@ class Product extends Model
         }
         if ($filters['query'] ?? false) {
             if ($filters['category_id'] !== 'all') {
-                return $query->where('title', 'like', '%' . request('query') . '%')->orWhere('description', 'like', '%' . request('query') . '%')->where('category_id', $filters['category_id']);
+                return $query->where('category_id', $filters['category_id'])->where('title', 'like', '%' . request('query') . '%')->orWhere('description', 'like', '%' . request('query') . '%');
             }
             return $query->where('title', 'like', '%' . request('query') . '%')->orWhere('description', 'like', '%' . request('query') . '%');
         }
