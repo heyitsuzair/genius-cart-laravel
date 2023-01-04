@@ -41,14 +41,37 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
                             an
                             option</label>
-                        <select id="countries"
+                        <select id="countries" name="country"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-                            <option selected>Choose a country</option>
+                            <option selected value="{{ old('country') ? old('country') : '' }}">
+                                {{ old('country') ? old('country') : 'Choose a country' }}</option>
                             @foreach ($countries as $country)
                                 <option value="{{ $country['name'] }}">{{ $country['name'] }}</option>
                             @endforeach
                         </select>
-
+                        @error('country')
+                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-12">
+                        <div class="flex items-center pl-4 border border-gray-200 rounded">
+                            <input id="bordered-radio-1" type="radio" value="COD" name="payment_method"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 payment-method focus:ring-blue-500">
+                            <label for="bordered-radio-1"
+                                class="w-full py-4 ml-2 text-sm font-medium text-gray-900">Cash On Delivery</label>
+                        </div>
+                        <div class="flex items-center pl-4 border border-gray-200 rounded">
+                            <input id="bordered-radio-2" type="radio" value="CC" name="payment_method"
+                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 payment-method focus:ring-blue-500">
+                            <label for="bordered-radio-2"
+                                class="w-full py-4 ml-2 text-sm font-medium text-gray-900">Credit Card</label>
+                        </div>
+                        @error('payment_method')
+                            <p class="text-red-500 text-sm">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="col-span-12 cc-form hidden">
+                        <x-credit-card-form />
                     </div>
                 </div>
             </div>
@@ -85,7 +108,13 @@
                             </strong>
                         </div>
                         <div class="py-4 border-b border-gray-300 gap-4 flex justify-between items-center px-3">
-                            <span>Total</span>
+                            <span>Total Items</span>
+                            <strong class="font-semibold">
+                                {{ count($products) }}
+                            </strong>
+                        </div>
+                        <div class="py-4 border-b border-gray-300 gap-4 flex justify-between items-center px-3">
+                            <strong>Total</strong>
                             <strong class="font-semibold">
                                 {{ session('currency') ?? 'PKR' }} @php
                                     echo Currency::convert()
@@ -97,11 +126,12 @@
                                 @endphp
                             </strong>
                         </div>
+
                     </aside>
                     <div class="mt-4">
-                        <a href="/checkout"
-                            class="border-2 text-center hover:border-blue-500 transition-all flex items-center justify-center rounded-lg py-2">Place
-                            Order</a>
+                        <button type="submit"
+                            class="border-2 w-full text-center hover:border-blue-500 transition-all flex items-center justify-center rounded-lg py-2">Place
+                            Order</button>
                     </div>
                 </div>
             </div>

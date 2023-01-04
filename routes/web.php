@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ViewController;
 use Illuminate\Support\Facades\Route;
@@ -48,6 +49,7 @@ Route::post('/product/{product}/add-review', [ProductsController::class, 'addRev
 Route::post('/product/add-to-cart', [ProductsController::class, 'addToCart']);
 Route::delete('/product/{product}/remove-from-wishlist', [ProductsController::class, 'removeFromWishlist']);
 Route::delete('/product/{product}/remove-from-cart', [ProductsController::class, 'removeFromCart']);
+Route::post('/place-order', [OrderController::class, 'placeOrder']);
 /**
  * Actions ----------->
  */

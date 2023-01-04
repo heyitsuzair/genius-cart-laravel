@@ -8,3 +8,4 @@ import "./icon.js";
 import "./product.js";
 import "./global.js";
 import "./cart.js";
+import "./checkout.js";
