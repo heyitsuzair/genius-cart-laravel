@@ -15,7 +15,8 @@
                         Logout
                     </x-button-full-rounded>
                     <x-button-full-rounded class="py-1 ml-2
-            px-6 text-white bg-black" href="/logout">
+            px-6 text-white bg-black"
+                        href="/dashboard?route=index">
                         Dashboard
                     </x-button-full-rounded>
                 @else

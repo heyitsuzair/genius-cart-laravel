@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Models\Contact;
 
 class ViewController extends Controller
 {
@@ -128,8 +129,18 @@ class ViewController extends Controller
     }
     public function dashboard(Request $req)
     {
+        /**
+         * Check If Route Is Present In Query String Or Not
+         */
         if ($req->has('route')) {
-            return view('auth.index');
+            $submissions = [];
+
+            if ($req->route == 'submissions') {
+                $get_submissions = Contact::all();
+                $submissions = $get_submissions;
+            }
+
+            return view('auth.index', compact('submissions'));
         } else {
             return redirect('/dashboard?route=index');
         }
