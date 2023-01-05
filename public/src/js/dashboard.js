@@ -15,15 +15,12 @@ openDeleteModal.on("click", function (e) {
      */
     const formAction = e.currentTarget.getAttribute("data-action");
     const formActionValue = e.currentTarget.getAttribute("data-id");
-    const formActionName = e.currentTarget.getAttribute("data-name");
 
     /**
      * Set The Attributes In Form
      */
 
-    actionValue.attr("name", formActionName);
-    actionValue.val(formActionValue);
-    actionForm.attr("action", formAction);
+    actionForm.attr("action", `${formAction}/${formActionValue}`);
 });
 closeModal.on("click", function () {
     defaultModal.addClass("hidden").removeClass("flex");
@@ -31,8 +28,6 @@ closeModal.on("click", function () {
     /**
      * Remove Attributes from form
      */
-    actionValue.attr("name", "");
-    actionValue.val("");
     actionForm.attr("action", "");
 });
 

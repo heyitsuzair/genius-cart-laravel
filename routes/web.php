@@ -58,6 +58,11 @@ Route::delete('/product/{product}/remove-from-cart', [ProductsController::class,
 Route::post('/place-order', [OrderController::class, 'placeOrder']);
 Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
+
+include 'includes/categories.php';
+
+
+Route::delete('/logout', [AuthController::class, 'logout'])->middleware('auth');
 // Facebook Login URL
 Route::prefix('facebook')->name('facebook.')->group(function () {
     Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
