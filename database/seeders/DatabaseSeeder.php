@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $categories = Category::factory(5)->create();
         $products = Product::factory(10)->create();
+        $users = User::factory(1)->create();
 
         // \App\Models\User::factory()->create([
         //     'name' => 'Test User',

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\FaceBookController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ViewController;
@@ -27,6 +29,7 @@ Route::get('/shop', [ProductsController::class, 'shop'])->name('Shop');
 Route::get('/wishlist', [ViewController::class, 'wishlist'])->name('Wishlist');
 Route::get('/cart', [ViewController::class, 'cart'])->name('Cart');
 Route::get('/checkout', [ViewController::class, 'checkout'])->name('Checkout');
+Route::get('/login', [ViewController::class, 'login'])->middleware('guest')->name('Login');
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');
 /**
  * Views ------------------->
@@ -50,6 +53,13 @@ Route::post('/product/add-to-cart', [ProductsController::class, 'addToCart']);
 Route::delete('/product/{product}/remove-from-wishlist', [ProductsController::class, 'removeFromWishlist']);
 Route::delete('/product/{product}/remove-from-cart', [ProductsController::class, 'removeFromCart']);
 Route::post('/place-order', [OrderController::class, 'placeOrder']);
+Route::post('/login', [AuthController::class, 'login'])->middleware('guest');
+Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth');
+// Facebook Login URL
+Route::prefix('facebook')->name('facebook.')->group(function () {
+    Route::get('auth', [FaceBookController::class, 'loginUsingFacebook'])->name('login');
+    Route::get('callback', [FaceBookController::class, 'callbackFromFacebook'])->name('callback');
+});
 /**
  * Actions ----------->
  */

@@ -121,4 +121,9 @@ class ViewController extends Controller
 
         return view('checkout', compact('products'));
     }
+
+    public function login()
+    {
+        return view('login');
+    }
 }

@@ -9,9 +9,21 @@
                 <x-currency-switch />
             </div>
             <div>
-                <x-button-full-rounded class="py-1 px-6 text-white bg-black" href="/">
-                    Login
-                </x-button-full-rounded>
+                @auth
+                    <x-button-full-rounded class="py-1
+            px-6 text-white bg-black" href="/logout">
+                        Logout
+                    </x-button-full-rounded>
+                    <x-button-full-rounded class="py-1 ml-2
+            px-6 text-white bg-black" href="/logout">
+                        Dashboard
+                    </x-button-full-rounded>
+                @else
+                    <x-button-full-rounded class="py-1
+                    px-6 text-white bg-black" href="/login">
+                        Login
+                    </x-button-full-rounded>
+                @endauth
             </div>
         </div>
     </header>

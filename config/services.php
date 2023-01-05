@@ -25,6 +25,12 @@ return [
         'token' => env('POSTMARK_TOKEN'),
     ],
 
+    'facebook' => [
+        'client_id' => env('FACEBOOK_C_ID'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => env('FACEBOOK_C_SK'), //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => 'http://localhost:8000/facebook/callback'
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
