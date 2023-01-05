@@ -9,3 +9,4 @@ import "./product.js";
 import "./global.js";
 import "./cart.js";
 import "./checkout.js";
+import "./dashboard.js";

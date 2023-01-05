@@ -1,3 +1,11 @@
+@include('auth.components.delete-modal', [
+    'action' => 'submit',
+    'title' => 'Delete Category',
+    'message' =>
+        'Are you sure you want to delete this category? Deleting this category will also delete its corresponding products.',
+])
+
+
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
@@ -39,8 +47,24 @@
                             {{ $categories_total_products[$category->id] }}
 
                         </td>
-                        <td class="px-6 py-4">
-                            <i class="fa fa-xmark"></i>
+                        <td class="px-6 py-4 flex items-start gap-4">
+                            <form action="/categories" method="POST">
+                                @method('DELETE')
+                                @csrf
+                                <button type="button" data-id="{{ $category->id }}" data-action="/categories"
+                                    data-name="category_id"
+                                    class="border-red-500 bg-red-500 open-delete-modal rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-red-700 border-red-700">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                            <form action="/categories" method="POST">
+                                @method('PUT')
+                                @csrf
+                                <button type="button"
+                                    class="border-blue-500 bg-blue-500 rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-blue-700 border-blue-700">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
