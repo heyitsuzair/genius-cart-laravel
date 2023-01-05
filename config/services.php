@@ -31,6 +31,12 @@ return [
         'redirect' => 'http://localhost:8000/facebook/callback'
     ],
 
+    'google' => [
+        'client_id'     => env('GOOGLE_C_ID'),
+        'client_secret' => env('GOOGLE_C_SK'),
+        'redirect'      => "http://localhost:8000/google/callback",
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),

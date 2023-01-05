@@ -8,20 +8,22 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Socialite\Facades\Socialite;
 
-class FaceBookController extends Controller
+class GoogleController extends Controller
 {
     /**
-     * Redirect the user to the Facebook authentication page.
+     * Redirect the user to the Google authentication page.
+     *
+     * @return \Illuminate\Http\Response
      */
-    public function loginUsingFacebook()
+    public function loginUsingGoogle()
     {
-        return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('google')->redirect();
     }
 
-    public function callbackFromFacebook()
+    public function callbackFromGoogle()
     {
         try {
-            $user = Socialite::driver('facebook')->user();
+            $user = Socialite::driver('google')->user();
 
             $saveUser = User::updateOrCreate([
                 'email' => $user->getEmail(),
@@ -29,7 +31,7 @@ class FaceBookController extends Controller
                 'name' => $user->getName(),
                 'email' => $user->getEmail(),
                 'password' => Hash::make($user->getName() . '@' . $user->getId()),
-                'facebook_id' =>  $user->getId(),
+                'google_id' =>  $user->getId(),
             ]);
 
             Auth::loginUsingId($saveUser->id);
