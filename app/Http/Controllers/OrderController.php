@@ -6,6 +6,7 @@ use App\Models\Order;
 use App\Models\Product;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 
 class OrderController extends Controller
@@ -90,6 +91,20 @@ class OrderController extends Controller
                 session()->put('cart', []);
                 session()->put('wishlist', []);
 
+                $last_order = Order::all()->last();
+
+
+                $order_id = $last_order->id + 1;
+
+                /**
+                 * Send Mail To Customer
+                 */
+                $data = ['order_id' => $order_id, 'receipt_url' => null];
+
+                $mail = Mail::send('orders.placed', $data, function ($message) use ($fields) {
+                    $message->to($fields['email'], 'Genius Cart')->subject('Order Placed!');
+                });
+
                 return redirect('/')->with('form-success', 'Order Placed!');
             }
 
@@ -153,6 +168,8 @@ class OrderController extends Controller
 
                 $last_order = Order::all()->last();
 
+
+                $order_id = $last_order->id + 1;
                 /**
                  * Create Charge
                  */
@@ -161,7 +178,7 @@ class OrderController extends Controller
                     'amount' => $total . "00",
                     'currency' => 'pkr',
                     'source' => $token->id,
-                    'description' => 'Payment Of Order ID ' . $last_order->id + 1,
+                    'description' => 'Payment Of Order ID ' . $order_id,
                 ]);
 
 
@@ -175,6 +192,15 @@ class OrderController extends Controller
                  */
                 session()->put('cart', []);
                 session()->put('wishlist', []);
+
+                /**
+                 * Send Mail To Customer
+                 */
+                $data = ['order_id' => $order_id, 'receipt_url' => $charge->receipt_url];
+
+                $mail = Mail::send('orders.placed', $data, function ($message) use ($fields) {
+                    $message->to($fields['email'], 'Genius Cart')->subject('Order Placed!');
+                });
 
                 return redirect('/')->with('form-success', 'Order Placed!');
             } catch (Exception $e) {

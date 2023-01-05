@@ -74,7 +74,7 @@
                         <i class="fa fa-minus" aria-hidden="true"></i>
                     </button>
                     <input type="number"
-                        class="border-0 outline-0 focus:ring-0 text-center w-[8%] pl-0 xl:pl-3.5 border border-gray-300 pr-0"
+                        class="border-0 outline-0 focus:ring-0 text-center w-[8%] pl-0 border border-gray-300 pr-0"
                         value="{{ $is_in_cart ? session('cart')[$product->id]['quantity'] : 1 }}" name="quantity"
                         id="single_prod_quantity" readonly>
                     <input type="hidden" value="add" name="addition_type" id="addition_type">
