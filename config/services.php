@@ -37,6 +37,12 @@ return [
         'redirect'      => "http://localhost:8000/google/callback",
     ],
 
+    'github' => [
+        'client_id'     => env('GITHUB_C_ID'),
+        'client_secret' => env('GITHUB_C_SK'),
+        'redirect'      => "http://localhost:8000/github/callback",
+    ],
+
     'ses' => [
         'key' => env('AWS_ACCESS_KEY_ID'),
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
