@@ -31,6 +31,6 @@ class AuthController extends Controller
     {
         auth()->logout();
 
-        return redirect()->back()->with('form-success', 'You Are Logged Out');
+        return redirect('/')->with('form-success', 'You Are Logged Out');
     }
 }

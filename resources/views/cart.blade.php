@@ -120,7 +120,7 @@
                 </div>
             </div>
             <div class="{{ count($products) < 1 ? 'hidden' : 'col-span-12 lg:col-span-3' }}">
-                <div class=" lg:sticky lg:top-24">
+                <div class="lg:sticky lg:top-24">
                     <aside class="shadow-md">
                         <div class="bg-gray-100 py-2 border-b border-black px-3">
                             <strong class="font-semibold">Cart Totals</strong>

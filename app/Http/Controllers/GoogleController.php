@@ -35,7 +35,7 @@ class GoogleController extends Controller
             ]);
 
             Auth::loginUsingId($saveUser->id);
-            return redirect('/dashboard')->with('form-success', 'You Are Logged In');
+            return redirect('/dashboard?route=index')->with('form-success', 'You Are Logged In');
         } catch (\Throwable $th) {
             throw $th;
         }

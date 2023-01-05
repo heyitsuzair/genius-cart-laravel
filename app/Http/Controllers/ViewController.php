@@ -126,4 +126,12 @@ class ViewController extends Controller
     {
         return view('login');
     }
+    public function dashboard(Request $req)
+    {
+        if ($req->has('route')) {
+            return view('auth.index');
+        } else {
+            return redirect('/dashboard?route=index');
+        }
+    }
 }

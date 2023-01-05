@@ -32,6 +32,7 @@ Route::get('/wishlist', [ViewController::class, 'wishlist'])->name('Wishlist');
 Route::get('/cart', [ViewController::class, 'cart'])->name('Cart');
 Route::get('/checkout', [ViewController::class, 'checkout'])->name('Checkout');
 Route::get('/login', [ViewController::class, 'login'])->middleware('guest')->name('Login');
+Route::get('/dashboard', [ViewController::class, 'dashboard'])->middleware('auth')->name('Dashboard');
 Route::get('/product/{product}', [ProductsController::class, 'show'])->name('Product')->where('product', '[0-9]+');
 /**
  * Views ------------------->
@@ -67,7 +68,7 @@ Route::prefix('google')->name('google.')->group(function () {
     Route::get('auth', [GoogleController::class, 'loginUsingGoogle'])->name('login');
     Route::get('callback', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
 });
-// Google Login URL
+// Github Login URL
 Route::prefix('github')->name('github.')->group(function () {
     Route::get('auth', [GithubController::class, 'loginUsingGithub'])->name('login');
     Route::get('callback', [GithubController::class, 'callbackFromGithub'])->name('callback');
