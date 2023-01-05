@@ -21,6 +21,10 @@
                 @if (Request::get('route') === 'submissions')
                     @include('auth.partials.submissions', compact('submissions'))
                 @endif
+                @if (Request::get('route') === 'categories')
+                    @include('auth.partials.categories',
+                        compact('categories', 'categories_total_products'))
+                @endif
             </div>
         </div>
     </div>

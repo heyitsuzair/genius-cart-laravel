@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Models\Category;
 use App\Models\Contact;
 
 class ViewController extends Controller
@@ -134,13 +135,26 @@ class ViewController extends Controller
          */
         if ($req->has('route')) {
             $submissions = [];
+            $categories = [];
+            $categories_total_products = [];
 
             if ($req->route == 'submissions') {
                 $get_submissions = Contact::all();
                 $submissions = $get_submissions;
             }
+            if ($req->route == 'categories') {
+                $get_categories = Category::paginate(5)->appends(request(['route']));
+                $categories = $get_categories;
 
-            return view('auth.index', compact('submissions'));
+                /**
+                 * Get all categories total products available
+                 */
+                foreach ($get_categories as $category) {
+                    $categories_total_products[$category->id] = $category->products()->count();
+                }
+            }
+
+            return view('auth.index', compact('submissions', 'categories', 'categories_total_products'));
         } else {
             return redirect('/dashboard?route=index');
         }
