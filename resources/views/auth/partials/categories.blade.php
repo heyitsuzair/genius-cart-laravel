@@ -4,6 +4,10 @@
     'message' =>
         'Are you sure you want to delete this category? Deleting this category will also delete its corresponding products.',
 ])
+@include('auth.components.edit-modal', [
+    'action' => 'submit',
+    'title' => 'Edit Category',
+])
 
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -48,23 +52,20 @@
 
                         </td>
                         <td class="px-6 py-4 flex items-start gap-4">
-                            <form action="/categories" method="POST">
-                                @method('DELETE')
-                                @csrf
-                                <button type="button" data-id="{{ $category->id }}" data-action="/categories"
-                                    data-name="category_id"
-                                    class="border-red-500 bg-red-500 open-delete-modal rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-red-700 border-red-700">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </button>
-                            </form>
-                            <form action="/categories" method="POST">
-                                @method('PUT')
-                                @csrf
-                                <button type="button"
-                                    class="border-blue-500 bg-blue-500 rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-blue-700 border-blue-700">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                </button>
-                            </form>
+
+                            <button type="button" data-id="{{ $category->id }}" data-action="/categories"
+                                data-name="category_id"
+                                class="border-red-500 bg-red-500 open-delete-modal rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-red-700 border-red-700">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </button>
+
+
+                            <button type="button" data-id="{{ $category->id }}" data-action="/categories"
+                                data-name="category" data-value="{{ $category->category }}"
+                                class="border-blue-500 bg-blue-500 open-edit-modal rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-blue-700 border-blue-700">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                            </button>
+
                         </td>
                     </tr>
                 @endforeach
