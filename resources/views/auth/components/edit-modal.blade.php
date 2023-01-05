@@ -29,7 +29,7 @@
                     <x-input-ringged type="text" name="" label="" placeholder="" value=""
                         class="action-field w-full" />
 
-                    <div class="mt-4">
+                    <div class="mt-4 flex items-center">
 
                         <x-btn-loading>
                             Submitting...
