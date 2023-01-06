@@ -1,5 +1,5 @@
 <div class="rounded-lg shadow-lg p-4">
-    <form action="/products" method="POST">
+    <form action="/products" method="POST" enctype="multipart/form-data">
         @csrf
         <x-input-ringged type="text" name="title" label="Product Title" value="{{ old('title') }}"
             placeholder="Please Enter Title *" />
@@ -10,6 +10,9 @@
                 rows="10">
                 {{ old('description') }}
             </textarea>
+            @error('description')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="my-3">
             <x-input-ringged type="number" name="price" label="Product Price" value="{{ old('price') }}"
@@ -41,7 +44,8 @@
             <label for="pictures" class="block mb-2 text-sm font-medium text-gray-900">Upload Image *</label>
             <input
                 class="block w-full image-upload text-gray-900 border-gray-300 rounded-md bg-gray-100 text-sm focus:ring-blue-500 focus:border-blue-500"
-                accept="image/png, image/gif, image/jpeg" id="pictures" name="pictures" type="file" multiple>
+                accept="image/png, image/gif, image/jpeg,image/jpg" id="pictures" name="pictures[]" type="file"
+                multiple>
             <div class="image-preview grid grid-cols-12 gap-4 mt-4">
                 <div class="col-span-3">
                     <div
@@ -50,6 +54,9 @@
                     </div>
                 </div>
             </div>
+            @error('pictures')
+                <p class="text-red-500 text-sm">{{ $message }}</p>
+            @enderror
         </div>
         <div class="my-3">
             <x-btn-loading>

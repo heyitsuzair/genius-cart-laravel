@@ -10,6 +10,7 @@ use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Models\Order;
 use App\Models\Review;
 use App\Models\Wishlist;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 use Validator;
 
 class ProductsController extends Controller
@@ -317,6 +318,15 @@ class ProductsController extends Controller
                 $order->save();
             }
         }
+        $product_images = json_decode($product->pictures);
+        /**
+         * Deleting Product Images From Cloudinary
+         */
+        foreach ($product_images as $image) {
+            $token = explode('/', $image);
+            $file_name = explode('.', $token[sizeof($token) - 1]);
+            $response = Cloudinary::destroy('genius-cart/products/' . $file_name[0]);
+        }
 
         $product->delete();
         return redirect('/dashboard?route=products')->with('form-success', 'Product Deleted!');
@@ -328,12 +338,19 @@ class ProductsController extends Controller
          * Custom Error Messages
          */
         $custom_error_messages = [
-            'name.required' => 'Name is required',
-            'name.min' => 'Name Must Include Atleast Three Characters',
-            'email.required' => 'Email is required',
-            'email.email' => 'Please Enter A Valid Email',
-            'message.required' => 'Message Cannot Be Empty',
-            'rating.required' => 'Stars Must Be Greater Than One',
+            'title.required' => 'Title Is Required',
+            'description.min' => 'Description Must Include Atleast Ten Characters',
+            'price.required' => 'Price Is Required',
+            'price.min' => 'Price Must Be Greater Than 0',
+            'price.numeric' => 'Price Must Be Numeric',
+            'quantity.required' => 'Quantity Is Required',
+            'quantity.min' => 'Quantity Must Be Greater Than 0',
+            'quantity.numeric' => 'Quantity Must Be Numeric',
+            'category_id.required' => 'Category Is Required',
+            'category_id.numeric' => 'Category Must Be Numeric',
+            'pictures.required' => 'Please Upload Atleast One Picture',
+            'pictures.max' => 'Picture Must Be Smaller than 2 MB'
+
         ];
         $formFields = $req->validate([
             'title' => 'required',
@@ -341,7 +358,39 @@ class ProductsController extends Controller
             'price' => 'required|numeric|min:1',
             'quantity' => 'required|numeric|min:1',
             'category_id' => 'required|numeric',
-            'pictures' => 'required|numeric'
+            'pictures' => 'required|max:2048'
         ], $custom_error_messages);
+
+        $pictures = [];
+        /**
+         * Iterate over images
+         */
+        foreach ($formFields['pictures'] as $picture) {
+
+            /**
+             * Upload each image on cloudinary server
+             */
+            $uploadedFileUrl = $picture->storeOnCloudinary('genius-cart/products')->getSecurePath();
+            /**
+             * Add image path as array item
+             */
+            $pictures[] = $uploadedFileUrl;
+        }
+
+        $fields = [
+            'title' => $formFields['title'],
+            'description' => $formFields['description'],
+            'price' => $formFields['price'],
+            'quantity' => $formFields['quantity'],
+            'category_id' => $formFields['category_id'],
+            'pictures' => json_encode($pictures)
+        ];
+
+        /**
+         * Add new product to database
+         */
+        $create_product = Product::create($fields);
+
+        return redirect('/dashboard?route=products')->with('form-success', 'Product Added!');
     }
 }
