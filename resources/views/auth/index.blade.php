@@ -18,6 +18,9 @@
                 @include('auth.components.sidebar')
             </div>
             <div class="col-span-12 lg:col-span-9">
+                @if (Request::get('route') === 'index')
+                    @include('auth.partials.main')
+                @endif
                 @if (Request::get('route') === 'submissions')
                     @include('auth.partials.submissions.manage', compact('submissions'))
                 @endif

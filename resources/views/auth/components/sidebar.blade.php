@@ -1,6 +1,6 @@
 @php
     use App\Models\Order;
-    $total_orders = Order::count();
+    $total_orders = Order::where('status', 'processing')->count();
 @endphp
 
 
@@ -8,7 +8,7 @@
     <div class="px-3 py-4 rounded shadow-lg">
         <ul class="space-y-2">
             <li>
-                <a href="#"
+                <a href="?route=index"
                     class="flex items-center p-2 text-base font-normal  rounded-lg {{ Request::get('route') == 'index' ? 'bg-black text-white' : 'hover:bg-gray-100 text-gray-900' }}">
                     <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900"
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
