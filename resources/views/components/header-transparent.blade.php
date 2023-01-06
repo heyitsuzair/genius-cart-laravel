@@ -22,7 +22,7 @@
                 @else
                     <x-button-full-rounded class="py-1
                     px-6 text-white bg-black" href="/login">
-                        Login
+                        Admin
                     </x-button-full-rounded>
                 @endauth
             </div>
