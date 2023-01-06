@@ -8,7 +8,7 @@
                     use App\Models\Category;
                     $categories = Category::all();
                 @endphp
-                <select id="countries" name="category_id" class="border-0 w-full p-4 focus:ring-0">
+                <select id="categories" name="category_id" class="border-0 w-full p-4 focus:ring-0">
                     <option selected value="all">All Categories</option>
                     @foreach ($categories as $category)
                         <option value={{ $category->id }}>{{ $category->category }}</option>

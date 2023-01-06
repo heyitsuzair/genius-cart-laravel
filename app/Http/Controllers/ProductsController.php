@@ -308,6 +308,9 @@ class ProductsController extends Controller
             $order = $orders[$i];
             $order_items = json_decode($order->order_items, true);
 
+            /**
+             * Check if the product of "$product->id" exists in the order items array, if yes than unset it else continue
+             */
             if (array_key_exists($product->id, $order_items)) {
                 unset($order_items[$product->id]);
                 $order->order_items = json_encode($order_items);
@@ -315,9 +318,30 @@ class ProductsController extends Controller
             }
         }
 
-
-
         $product->delete();
         return redirect('/dashboard?route=products')->with('form-success', 'Product Deleted!');
+    }
+
+    public function store(Request $req)
+    {
+        /**
+         * Custom Error Messages
+         */
+        $custom_error_messages = [
+            'name.required' => 'Name is required',
+            'name.min' => 'Name Must Include Atleast Three Characters',
+            'email.required' => 'Email is required',
+            'email.email' => 'Please Enter A Valid Email',
+            'message.required' => 'Message Cannot Be Empty',
+            'rating.required' => 'Stars Must Be Greater Than One',
+        ];
+        $formFields = $req->validate([
+            'title' => 'required',
+            'description' => 'required|min:10',
+            'price' => 'required|numeric|min:1',
+            'quantity' => 'required|numeric|min:1',
+            'category_id' => 'required|numeric',
+            'pictures' => 'required|numeric'
+        ], $custom_error_messages);
     }
 }

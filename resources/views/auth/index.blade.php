@@ -28,8 +28,11 @@
                 @if (Request::get('route') === 'categories' && Request::get('action') == 'create')
                     @include('auth.partials.categories.create')
                 @endif
-                @if (Request::get('route') === 'products')
+                @if (Request::get('route') === 'products' && !Request::get('action'))
                     @include('auth.partials.products.manage', compact('products'))
+                @endif
+                @if (Request::get('route') === 'products' && Request::get('action') == 'create')
+                    @include('auth.partials.products.create')
                 @endif
             </div>
         </div>

@@ -21,8 +21,8 @@ return new class extends Migration
             $table->integer('price');
             $table->integer('quantity');
             $table->foreignId('category_id')->constrained()->on('categories')->onDelete('cascade');
-            $table->integer('total_reviews');
-            $table->float('average_rating');
+            $table->integer('total_reviews')->default(0);
+            $table->float('average_rating')->default(0);
         });
     }
 

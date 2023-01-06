@@ -52,7 +52,7 @@ const closeEditModal = $(".close-edit-modal");
 const actionField = $(".action-field");
 
 /**
- * On Open Delete Modal Add "flex" class to defaultModal and remove "hidden" class from it
+ * On Open Edit Modal Add "flex" class to defaultModal and remove "hidden" class from it
  */
 openEditModal.on("click", function (e) {
     editModal.removeClass("hidden").addClass("flex");
@@ -88,4 +88,68 @@ closeEditModal.on("click", function () {
 
     actionField.attr("name", "");
     actionField.val("");
+});
+
+/**
+ * Edit Modal ----------------------------->
+ */
+
+/**
+ * On Image Upload  ------------------------>
+ */
+const imageUpload = $(".image-upload");
+const imagePreview = $(".image-preview");
+
+imageUpload.on("change", function (e) {
+    const files = e.target.files;
+    /**
+     * Delete all the children of the image preview
+     */
+    imagePreview.empty();
+    /**
+     * Iterate over each image
+     */
+    for (let i = 0; i < files.length; i++) {
+        /**
+         * Convert the image into base64
+         */
+        const reader = new FileReader();
+        reader.readAsDataURL(files[i]);
+        reader.onloadend = () => {
+            /**
+             * Create A New Div element of 'col-span-3' class
+             */
+
+            const div = document.createElement("div");
+
+            div.classList.add("col-span-3");
+
+            /**
+             * Create a new image element and add it to image preview children
+             */
+
+            const image = document.createElement("img");
+            /**
+             * Set the image source to base64 result
+             */
+
+            image.src = reader.result;
+            /**
+             * Add the "w-full h-20" class to the image element
+             */
+
+            image.classList.add("w-full", "h-28", "rounded-md", "object-cover");
+
+            /**
+             * Append the image element to the div
+             */
+
+            div.append(image);
+
+            /**
+             * Append the div element to the image preview children
+             */
+            imagePreview.append(div);
+        };
+    }
 });
