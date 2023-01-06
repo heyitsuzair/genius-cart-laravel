@@ -139,6 +139,7 @@ class ViewController extends Controller
             $categories = [];
             $categories_total_products = [];
             $products = [];
+            $product = [];
 
             if ($req->route == 'submissions') {
                 $get_submissions = Contact::all();
@@ -161,7 +162,16 @@ class ViewController extends Controller
                 $products = $get_products;
             }
 
-            return view('auth.index', compact('submissions', 'categories', 'categories_total_products', 'products'));
+            if ($req->route == 'products' && $req->action == 'edit') {
+                /**
+                 * Get Single Product
+                 */
+                $product_id = $req->id;
+                $get_product = Product::findOrFail($product_id);
+                $product = $get_product;
+            }
+
+            return view('auth.index', compact('submissions', 'categories', 'categories_total_products', 'products', 'product'));
         } else {
             return redirect('/dashboard?route=index');
         }

@@ -393,4 +393,69 @@ class ProductsController extends Controller
 
         return redirect('/dashboard?route=products')->with('form-success', 'Product Added!');
     }
+    public function update(Request $req, Product $product)
+    { {
+            /**
+             * Custom Error Messages
+             */
+            $custom_error_messages = [
+                'title.required' => 'Title Is Required',
+                'description.min' => 'Description Must Include Atleast Ten Characters',
+                'price.required' => 'Price Is Required',
+                'price.min' => 'Price Must Be Greater Than 0',
+                'price.numeric' => 'Price Must Be Numeric',
+                'quantity.required' => 'Quantity Is Required',
+                'quantity.min' => 'Quantity Must Be Greater Than 0',
+                'quantity.numeric' => 'Quantity Must Be Numeric',
+                'category_id.required' => 'Category Is Required',
+                'category_id.numeric' => 'Category Must Be Numeric',
+                'pictures.max' => 'Picture Must Be Smaller than 2 MB'
+
+            ];
+            $formFields = $req->validate([
+                'title' => 'required',
+                'description' => 'required|min:10',
+                'price' => 'required|numeric|min:1',
+                'quantity' => 'required|numeric|min:1',
+                'category_id' => 'required|numeric',
+                'pictures' => 'max:2048'
+            ], $custom_error_messages);
+
+            $pictures = [];
+            if (isset($formFields['pictures'])) {
+                /**
+                 * Iterate over images
+                 */
+                foreach ($formFields['pictures'] as $picture) {
+
+                    /**
+                     * Upload each image on cloudinary server
+                     */
+                    $uploadedFileUrl = $picture->storeOnCloudinary('genius-cart/products')->getSecurePath();
+                    /**
+                     * Add image path as array item
+                     */
+                    $pictures[] = $uploadedFileUrl;
+                }
+            } else {
+                $pictures = json_decode($product->pictures);
+            }
+
+            $fields = [
+                'title' => $formFields['title'],
+                'description' => $formFields['description'],
+                'price' => $formFields['price'],
+                'quantity' => $formFields['quantity'],
+                'category_id' => $formFields['category_id'],
+                'pictures' => json_encode($pictures)
+            ];
+
+            /**
+             * Updating Product In Database
+             */
+            $update_product = $product->update($fields);
+
+            return redirect('/dashboard?route=products')->with('form-success', 'Product Added!');
+        }
+    }
 }

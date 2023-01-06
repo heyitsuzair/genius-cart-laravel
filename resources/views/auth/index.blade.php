@@ -34,6 +34,9 @@
                 @if (Request::get('route') === 'products' && Request::get('action') == 'create')
                     @include('auth.partials.products.create')
                 @endif
+                @if (Request::get('route') === 'products' && Request::get('action') == 'edit')
+                    @include('auth.partials.products.edit', compact('product'))
+                @endif
             </div>
         </div>
     </div>
