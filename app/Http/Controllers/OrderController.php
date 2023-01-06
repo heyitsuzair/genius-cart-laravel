@@ -199,7 +199,14 @@ class OrderController extends Controller
                 $data = ['order_id' => $order_id, 'receipt_url' => $charge->receipt_url];
 
                 $mail = Mail::send('orders.placed', $data, function ($message) use ($fields) {
-                    $message->to($fields['email'], 'Genius Cart')->subject('Order Placed!');
+                    $message->to($fields['email'], $fields['name'])->subject('Order Placed!');
+                });
+
+                /**
+                 * Send Mail To Admin
+                 */
+                $mail_admin =  Mail::raw('New Order On Genius Cart!', function ($message) {
+                    $message->to(env('MAIL_USERNAME', 'uzairdeveloper354123@gmail.com'))->subject('New Order Entry!');
                 });
 
                 return redirect('/')->with('form-success', 'Order Placed!');
