@@ -220,7 +220,26 @@ class OrderController extends Controller
     }
 
 
-    public function createToken($req)
+    public function update(Order $order)
     {
+        /**
+         * Update order status
+         */
+        $order->status = 'completed';
+
+        /**
+         * Update Order
+         */
+        $order->update(['status' => $order->status]);
+
+        /**
+         * Send Mail To Customer
+         */
+        $data = ['order_id' => $order->id];
+        $mail = Mail::send('orders.complete', $data, function ($message) use ($order) {
+            $message->to($order->email, $order->name)->subject('Order Completed!');
+        });
+
+        return redirect()->back()->with('form-success', 'Order Completed!');
     }
 }

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use AmrShawky\LaravelCurrency\Facade\Currency;
 use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Order;
 
 class ViewController extends Controller
 {
@@ -140,6 +141,7 @@ class ViewController extends Controller
             $categories_total_products = [];
             $products = [];
             $product = [];
+            $orders = [];
 
             if ($req->route == 'submissions') {
                 $get_submissions = Contact::all();
@@ -171,7 +173,12 @@ class ViewController extends Controller
                 $product = $get_product;
             }
 
-            return view('auth.index', compact('submissions', 'categories', 'categories_total_products', 'products', 'product'));
+            if ($req->route == 'orders') {
+                $get_orders = Order::paginate(5)->appends(request(['route']));
+                $orders = $get_orders;
+            }
+
+            return view('auth.index', compact('submissions', 'categories', 'categories_total_products', 'products', 'product', 'orders'));
         } else {
             return redirect('/dashboard?route=index');
         }

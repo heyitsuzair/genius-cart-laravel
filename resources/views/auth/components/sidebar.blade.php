@@ -33,7 +33,7 @@
                     </svg>
                     <span class="flex-1 ml-3 whitespace-nowrap">Orders</span>
                     <span
-                        class="inline-flex items-center justify-center w-4 h-4 p-3 ml-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">{{ $total_orders }}</span>
+                        class="flex items-center justify-center w-6 h-6 text-sm font-medium text-blue-600 bg-blue-200 rounded-full">{{ $total_orders }}</span>
                 </a>
             </li>
 
