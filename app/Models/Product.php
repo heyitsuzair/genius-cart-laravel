@@ -12,7 +12,7 @@ class Product extends Model
     public $timestamps = false;
 
     /**
-     * Scope Filter By Category
+     * Scope Filter
      */
     public function scopeFilter($query, array $filters)
     {

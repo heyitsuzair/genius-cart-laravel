@@ -6,6 +6,20 @@
     }
 @endphp
 
+
+<div class="text-right mb-10">
+    <select id="status" name="status"
+        class="block text-gray-900 w-full border-gray-300 rounded-md bg-gray-100 text-sm focus:ring-blue-500 focus:border-blue-500 p-2.5 anchor-select">
+        <option value="" {{ Request::get('status') ? '' : 'selected' }}>Filter By Status</option>
+        <option value="processing"
+            {{ Request::get('status') && Request::get('status') == 'processing' ? 'selected' : '' }}>
+            Processing</option>
+        <option value="completed"
+            {{ Request::get('status') && Request::get('status') == 'completed' ? 'selected' : '' }}>
+            Completed</option>
+    </select>
+
+</div>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase">

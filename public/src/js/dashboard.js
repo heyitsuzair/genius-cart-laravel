@@ -153,3 +153,12 @@ imageUpload.on("change", function (e) {
         };
     }
 });
+
+const anchorSelect = $(".anchor-select");
+/**
+ * ?pageHandler()
+ *
+ * Change Page OnChange Select Value Change */
+anchorSelect.on("change", (e) => {
+    window.location.assign(`/dashboard?route=orders&status=${e.target.value}`);
+});

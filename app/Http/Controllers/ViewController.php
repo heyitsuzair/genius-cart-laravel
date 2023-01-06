@@ -174,7 +174,7 @@ class ViewController extends Controller
             }
 
             if ($req->route == 'orders') {
-                $get_orders = Order::paginate(5)->appends(request(['route']));
+                $get_orders = Order::filter(request(['status']))->paginate(5)->appends(request(['route', 'status']));
                 $orders = $get_orders;
             }
 
