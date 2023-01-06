@@ -288,4 +288,10 @@ class ProductsController extends Controller
 
         abort("403");
     }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect('/dashboard?route=products')->with('form-success', 'Product Deleted!');
+    }
 }
