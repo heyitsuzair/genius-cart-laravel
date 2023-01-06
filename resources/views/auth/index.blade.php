@@ -19,11 +19,14 @@
             </div>
             <div class="col-span-9">
                 @if (Request::get('route') === 'submissions')
-                    @include('auth.partials.submissions', compact('submissions'))
+                    @include('auth.partials.submissions.manage', compact('submissions'))
                 @endif
-                @if (Request::get('route') === 'categories')
-                    @include('auth.partials.categories',
+                @if (Request::get('route') === 'categories' && !Request::get('action'))
+                    @include('auth.partials.categories.manage',
                         compact('categories', 'categories_total_products'))
+                @endif
+                @if (Request::get('route') === 'categories' && Request::get('action') == 'create')
+                    @include('auth.partials.categories.create')
                 @endif
             </div>
         </div>
