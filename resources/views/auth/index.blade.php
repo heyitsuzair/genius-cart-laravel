@@ -28,6 +28,9 @@
                 @if (Request::get('route') === 'categories' && Request::get('action') == 'create')
                     @include('auth.partials.categories.create')
                 @endif
+                @if (Request::get('route') === 'products')
+                    @include('auth.partials.products.manage', compact('products'))
+                @endif
             </div>
         </div>
     </div>
