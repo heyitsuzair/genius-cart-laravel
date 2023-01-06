@@ -7,6 +7,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use AmrShawky\LaravelCurrency\Facade\Currency;
+use App\Models\Order;
 use App\Models\Review;
 use App\Models\Wishlist;
 use Validator;
@@ -257,6 +258,7 @@ class ProductsController extends Controller
             /**
              * If User Clicked Buy Now, Empty Cart And Add Product To Cart
              */
+            session()->forget('cart');
             $cart = [];
             $cart[$req->product_id] = [
                 'quantity' => $req->quantity,
@@ -291,6 +293,33 @@ class ProductsController extends Controller
 
     public function destroy(Product $product)
     {
+
+        /**
+         * Get All Orders
+         */
+        $orders = Order::all();
+
+        $order_items = [];
+
+        /**
+         * Iterate through all Orders and remove the product of "$product->id" from "order_items" array by json decoding
+         */
+        for ($i = 0; $i < count($orders); $i++) {
+            $order = $orders[$i];
+            $order_items = json_decode($order->order_items, true);
+            for ($j = 0; $j < count($order_items); $j++) {
+                $item = $order_items[$j];
+
+                if ($item['product_id'] === $product->id) {
+                    unset($order_items[$j]);
+                    $order->order_items = json_encode($order_items);
+                    $order->save();
+                }
+            }
+        }
+
+
+
         $product->delete();
         return redirect('/dashboard?route=products')->with('form-success', 'Product Deleted!');
     }

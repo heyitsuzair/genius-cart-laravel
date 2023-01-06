@@ -61,7 +61,8 @@ class ViewController extends Controller
              */
 
             foreach ($cart as $key => $value) {
-                $product = Product::find($key);
+                $product = Product::findOrFail($key);
+
                 /**
                  * Currency Conversion According To Selected Currency
                  */

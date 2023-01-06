@@ -53,7 +53,7 @@ class OrderController extends Controller
             $products = [];
 
             foreach ($cart as $product_id => $value) {
-                $product = Product::find($product_id);
+                $product = Product::findOrFail($product_id);
 
                 $sub_total += $value['quantity'] * $product->price;
                 $products[] = ['product_id' => $product_id, 'quantity' => $value['quantity']];
@@ -88,8 +88,7 @@ class OrderController extends Controller
                 /**
                  * Destroy Sessions
                  */
-                session()->put('cart', []);
-                session()->put('wishlist', []);
+                session()->forget(['cart', 'wishlist']);
 
                 $last_order = Order::all()->last();
 
@@ -190,8 +189,7 @@ class OrderController extends Controller
                 /**
                  * Destroy Sessions
                  */
-                session()->put('cart', []);
-                session()->put('wishlist', []);
+                session()->forget(['cart', 'wishlist']);
 
                 /**
                  * Send Mail To Customer
