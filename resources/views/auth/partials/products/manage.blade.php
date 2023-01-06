@@ -14,7 +14,7 @@
     <table class="w-full text-sm text-left text-gray-500">
         <thead class="text-xs text-gray-700 uppercase">
             <tr>
-                <th scope="col" class="px-6 py-3 bg-gray-50">
+                <th scope="col" class="px-6 py-3">
                     ID
                 </th>
                 <th scope="col" class="px-6 py-3 bg-gray-50">
@@ -27,7 +27,7 @@
                     Category
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Price
+                    Price (PKR)
                 </th>
                 <th scope="col" class="px-6 py-3 bg-gray-50">
                     Rating
@@ -64,10 +64,11 @@
                             </a>
                         </td>
                         <td class="px-6 py-4">
-                            {{ $product->price }}
+                            Rs {{ $product->price }}
                         </td>
                         <td class="px-6 py-4 bg-gray-50">
-                            {{ $product->average_rating }}
+                            <i class="fa fa-star text-yellow-500" aria-hidden="true"></i> {{ $product->average_rating }}
+                            ({{ $product->total_reviews }})
                         </td>
 
                         <td class="px-6 py-4 flex items-start gap-4">

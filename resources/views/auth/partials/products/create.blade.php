@@ -6,7 +6,7 @@
         <div class="my-3">
             <label for="description" class="block mb-2 text-sm font-medium text-gray-900">Product Description</label>
             <textarea id="description" name="description"
-                class="block w-full text-gray-900 border-gray-300 rounded-md bg-gray-100 sm:text-xs focus:ring-blue-500 focus:border-blue-500"
+                class="block w-full text-gray-900 border-gray-300 rounded-md bg-gray-100 sm:text-xs focus:ring-blue-500 focus:border-blue-500 p-2"
                 rows="10">
                 {{ old('description') }}
             </textarea>
@@ -15,7 +15,7 @@
             @enderror
         </div>
         <div class="my-3">
-            <x-input-ringged type="number" name="price" label="Product Price" value="{{ old('price') }}"
+            <x-input-ringged type="number" name="price" label="Product Price (PKR)" value="{{ old('price') }}"
                 placeholder="Please Enter Price *" />
         </div>
         <div class="my-3">
