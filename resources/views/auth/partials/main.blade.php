@@ -31,7 +31,7 @@
     }
     function pending_orders()
     {
-        $count = Order::where('status', 'pending')->count();
+        $count = Order::where('status', 'processing')->count();
     
         return $count;
     }
