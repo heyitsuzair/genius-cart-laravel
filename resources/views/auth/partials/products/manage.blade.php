@@ -69,7 +69,6 @@
                         <td class="px-6 py-4 bg-gray-50">
                             <div class="flex items-center gap-[0.2rem]">
                                 <i class="fa fa-star text-yellow-500" aria-hidden="true"></i> {{ $product->average_rating }}
-                                ({{ $product->total_reviews }})
                             </div>
                         </td>
 
