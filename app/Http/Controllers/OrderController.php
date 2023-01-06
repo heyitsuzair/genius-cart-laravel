@@ -56,7 +56,10 @@ class OrderController extends Controller
                 $product = Product::findOrFail($product_id);
 
                 $sub_total += $value['quantity'] * $product->price;
-                $products[] = ['product_id' => $product_id, 'quantity' => $value['quantity']];
+                // Making Product Id The Key of object
+                $products[$product->id] = [
+                    'quantity' => $value['quantity'],
+                ];
             }
 
             $total = 250 + $sub_total; // 250 is delivery charges

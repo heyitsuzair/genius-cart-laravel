@@ -307,14 +307,11 @@ class ProductsController extends Controller
         for ($i = 0; $i < count($orders); $i++) {
             $order = $orders[$i];
             $order_items = json_decode($order->order_items, true);
-            for ($j = 0; $j < count($order_items); $j++) {
-                $item = $order_items[$j];
 
-                if ($item['product_id'] === $product->id) {
-                    unset($order_items[$j]);
-                    $order->order_items = json_encode($order_items);
-                    $order->save();
-                }
+            if (array_key_exists($product->id, $order_items)) {
+                unset($order_items[$product->id]);
+                $order->order_items = json_encode($order_items);
+                $order->save();
             }
         }
 
