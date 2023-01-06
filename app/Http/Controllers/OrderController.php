@@ -96,7 +96,7 @@ class OrderController extends Controller
                 $last_order = Order::all()->last();
 
 
-                $order_id = $last_order->id + 1;
+                $order_id = $last_order ? $last_order->id + 1 : 1;
 
                 /**
                  * Send Mail To Customer
@@ -171,7 +171,7 @@ class OrderController extends Controller
                 $last_order = Order::all()->last();
 
 
-                $order_id = $last_order->id + 1;
+                $order_id = $last_order ? $last_order->id + 1 : 1;
                 /**
                  * Create Charge
                  */
