@@ -64,12 +64,17 @@
                             {{ $i }}
                         </td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
-                            @foreach (json_decode($order->order_items) as $key => $value)
-                                @php
-                                    $product = get_product($key);
-                                @endphp
-                            @endforeach
-                            {{ $product->title . ' x ' }} <strong class="text-black">{{ $value->quantity }}</strong>
+                            @if (count(json_decode($order->order_items)) > 0)
+                                @foreach (json_decode($order->order_items) as $key => $value)
+                                    @php
+                                        $product = get_product($key);
+                                    @endphp
+                                    {{ $product->title . ' x ' }} <strong class="text-black">{{ $value->quantity }}</strong>
+                                @endforeach
+                            @else
+                                <p>Order Items No Longer Available</p>
+                            @endif
+
                         </th>
                         <td class="px-6 py-4">
                             {{ $order->payment_method }}
