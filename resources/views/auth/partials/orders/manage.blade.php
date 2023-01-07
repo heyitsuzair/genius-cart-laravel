@@ -64,7 +64,7 @@
                             {{ $i }}
                         </td>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 bg-gray-50">
-                            @if (count(json_decode($order->order_items)) > 0)
+                            @if (json_decode($order->order_items) != [])
                                 @foreach (json_decode($order->order_items) as $key => $value)
                                     @php
                                         $product = get_product($key);
@@ -98,12 +98,12 @@
                                 class="text-white py-1 px-2 text-sm rounded-full {{ $order->status == 'processing' ? 'bg-yellow-500' : 'bg-green-500' }} capitalize">{{ $order->status }}<span>
                         </td>
 
-                        <td class="px-6 py-4 flex items-start gap-4 bg-gray-50">
+                        <td class="px-6 py-4 bg-gray-50">
                             <form action="/orders/{{ $order->id }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <button type="submit"
-                                    class="border-green-500 bg-green-500 open-edit-modal rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-green-700 border-green-700">
+                                    class="mx-auto border-green-500 bg-green-500 open-edit-modal rounded-full text-white flex items-center justify-center w-8 h-8 transitiion-all hover:bg-green-700 border-green-700">
                                     <i class="fa fa-check" aria-hidden="true"></i>
                                 </button>
                             </form>
